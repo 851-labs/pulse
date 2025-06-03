@@ -9,16 +9,16 @@
     "db:migrate": "tsx scripts/migrate.ts",
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
-    "generate": "drizzle-kit generate:pg"
+    "generate": "drizzle-kit generate"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "drizzle-orm": "0.29.4",
-    "postgres": "3.4.3"
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "0.44.1",
+    "postgres": "3.4.7"
   },
   "devDependencies": {
-    "drizzle-kit": "0.20.14",
-    "tsx": "4.7.1",
-    "typescript": "5.3.3"
+    "drizzle-kit": "0.31.1",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3"
   }
 }

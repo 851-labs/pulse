@@ -15,8 +15,9 @@ export const postsTable = pgTable("posts", {
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull(),
-  // .$onUpdate(() => new Date()),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .$onUpdate(() => new Date()),
 })
 
 export type InsertUser = typeof usersTable.$inferInsert
