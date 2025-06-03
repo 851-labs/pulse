@@ -1,3 +1,6 @@
+packages:
+  - apps/*
+  - packages/*
+  - tooling/*
 onlyBuiltDependencies:
-  - '@rocicorp/zero-sqlite3'
-  - protobufjs
+  - "@rocicorp/zero-sqlite3"

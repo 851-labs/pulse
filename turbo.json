@@ -1,0 +1,37 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
+      "persistent": true,
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "next-env.d.ts",
+        ".output/**",
+        ".vercel/output/**",
+        ".cache/tsbuildinfo.json",
+        "dist/**"
+      ]
+    }
+  },
+  "globalEnv": [],
+  "globalPassThroughEnv": [
+    "NODE_ENV",
+    "CI",
+    "PORT",
+    "VERCEL",
+    "VERCEL_ENV",
+    "VERCEL_URL",
+    "NEXT_RUNTIME",
+    "npm_lifecycle_event"
+  ]
+}
