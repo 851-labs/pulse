@@ -1,0 +1,16 @@
+{
+  "name": "@851-labs/auth",
+  "version": "0.0.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {},
+  "dependencies": {
+    "better-auth": "^1.2.8",
+    "@851-labs/database": "workspace:*"
+  },
+  "devDependencies": {
+    "dotenv": "^16.5.0",
+    "typescript": "5.8.3"
+  }
+}
