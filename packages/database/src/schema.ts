@@ -1,27 +1,41 @@
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
+import { jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
+// import { authUsers } from "drizzle-orm/supabase"
 
-export const usersTable = pgTable("users", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  age: integer("age").notNull(),
-  email: text("email").notNull().unique(),
+export const feedItemKindEnum = pgEnum("feed_item_kind", ["rss_article", "rss_podcast"])
+
+// Polymorphic root table
+export const feedItems = pgTable("feed_items", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  kind: feedItemKindEnum("kind").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 })
 
-export const postsTable = pgTable("posts", {
-  id: serial("id").primaryKey(),
+// RSS Article subtype
+export const rssArticles = pgTable("rss_articles", {
+  feedItemId: uuid("feed_item_id")
+    .primaryKey()
+    .references(() => feedItems.id),
   title: text("title").notNull(),
-  content: text("content").notNull(),
-  userId: integer("user_id")
-    .notNull()
-    .references(() => usersTable.id, { onDelete: "cascade" }),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at")
-    .notNull()
-    .$onUpdate(() => new Date()),
+  link: text("link").notNull(),
+  content: text("content"),
+  summary: text("summary"),
+  pubDate: timestamp("pub_date", { withTimezone: true }),
+  author: text("author"),
+  metadata: jsonb("metadata").$type<Record<string, any>>().default({}),
 })
 
-export type InsertUser = typeof usersTable.$inferInsert
-export type SelectUser = typeof usersTable.$inferSelect
-
-export type InsertPost = typeof postsTable.$inferInsert
-export type SelectPost = typeof postsTable.$inferSelect
+// RSS Podcast subtype
+export const rssPodcasts = pgTable("rss_podcasts", {
+  feedItemId: uuid("feed_item_id")
+    .primaryKey()
+    .references(() => feedItems.id),
+  title: text("title").notNull(),
+  link: text("link").notNull(),
+  audioUrl: text("audio_url").notNull(),
+  duration: text("duration"),
+  pubDate: timestamp("pub_date", { withTimezone: true }),
+  showNotes: text("show_notes"),
+  guest: text("guest"),
+  metadata: jsonb("metadata").$type<Record<string, any>>().default({}),
+})
