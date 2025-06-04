@@ -1,5 +1,6 @@
 import { jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
-// import { authUsers } from "drizzle-orm/supabase"
+
+export { user, session, account, verification } from "./schema-auth"
 
 export const feedKindEnum = pgEnum("feed_kind", ["rss", "youtube", "x_timeline", "github_repo"])
 
