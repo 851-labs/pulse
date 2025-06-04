@@ -1,10 +1,8 @@
 import { jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
 
-export { user, session, account, verification } from "./schema-auth"
+const feedKindEnum = pgEnum("feed_kind", ["rss", "youtube", "x_timeline", "github_repo"])
 
-export const feedKindEnum = pgEnum("feed_kind", ["rss", "youtube", "x_timeline", "github_repo"])
-
-export const feeds = pgTable("feeds", {
+const feeds = pgTable("feeds", {
   id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
@@ -18,7 +16,7 @@ export const feeds = pgTable("feeds", {
   lastFetchError: text("last_fetch_error"),
 })
 
-export const rssFeeds = pgTable("rss_feeds", {
+const rssFeeds = pgTable("rss_feeds", {
   id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
@@ -35,10 +33,10 @@ export const rssFeeds = pgTable("rss_feeds", {
   metadata: jsonb("metadata").$type<Record<string, any>>().default({}),
 })
 
-export const feedItemKindEnum = pgEnum("feed_item_kind", ["rss_article", "rss_podcast"])
+const feedItemKindEnum = pgEnum("feed_item_kind", ["rss_article", "rss_podcast"])
 
 // Polymorphic root table
-export const feedItems = pgTable("feed_items", {
+const feedItems = pgTable("feed_items", {
   id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
@@ -50,7 +48,7 @@ export const feedItems = pgTable("feed_items", {
 })
 
 // RSS Article subtype
-export const rssArticles = pgTable("rss_articles", {
+const rssArticles = pgTable("rss_articles", {
   id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
@@ -71,7 +69,7 @@ export const rssArticles = pgTable("rss_articles", {
 })
 
 // RSS Podcast subtype
-export const rssPodcasts = pgTable("rss_podcasts", {
+const rssPodcasts = pgTable("rss_podcasts", {
   id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
@@ -91,3 +89,6 @@ export const rssPodcasts = pgTable("rss_podcasts", {
   guest: text("guest"),
   metadata: jsonb("metadata").$type<Record<string, any>>().default({}),
 })
+
+export { user, session, account, verification } from "./schema-auth.gen"
+export { feeds, rssFeeds, feedItems, rssArticles, rssPodcasts }

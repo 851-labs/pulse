@@ -1,0 +1,19 @@
+{
+  "name": "@851-labs/database",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "zero:generate": "drizzle-zero generate --format --config ../database/drizzle-zero.config.ts --drizzle-kit-config ../database/drizzle.config.ts --tsconfig ../database/tsconfig.json --output src/schema.gen.ts",
+    "postinstall": "pnpm zero:generate"
+  },
+  "dependencies": {
+    "@rocicorp/zero": "0.20.2025052100"
+  },
+  "devDependencies": {
+    "drizzle-zero": "^0.10.5",
+    "typescript": "5.8.3"
+  }
+}

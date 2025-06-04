@@ -1,6 +1,7 @@
 {
   "name": "@851-labs/database",
   "version": "0.0.0",
+  "type": "module",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -10,7 +11,7 @@
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
-    "auth:generate": "pnpm dlx @better-auth/cli@latest generate --config ../auth/src/index.ts --output src/schema-auth.ts"
+    "auth:generate": "pnpm dlx @better-auth/cli@latest generate --config ../auth/src/index.ts --output src/schema-auth.gen.ts"
   },
   "dependencies": {
     "drizzle-orm": "0.44.1",
@@ -20,6 +21,7 @@
     "dotenv": "^16.5.0",
     "drizzle-kit": "0.31.1",
     "drizzle-seed": "^0.3.1",
+    "drizzle-zero": "^0.10.5",
     "tsx": "4.19.4",
     "typescript": "5.8.3"
   }
