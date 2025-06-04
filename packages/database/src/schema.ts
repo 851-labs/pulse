@@ -18,14 +18,15 @@ export const feeds = pgTable("feeds", {
 })
 
 export const rssFeeds = pgTable("rss_feeds", {
-  feedId: uuid("feed_id")
-    .primaryKey()
-    .references(() => feeds.id),
+  id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .defaultNow()
     .$onUpdate(() => new Date()),
+  feedId: uuid("feed_id")
+    .references(() => feeds.id)
+    .unique(),
   siteUrl: text("site_url"),
   description: text("description"),
   imageUrl: text("image_url"),
@@ -49,15 +50,16 @@ export const feedItems = pgTable("feed_items", {
 
 // RSS Article subtype
 export const rssArticles = pgTable("rss_articles", {
-  feedItemId: uuid("feed_item_id")
-    .primaryKey()
-    .references(() => feedItems.id),
-  rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.feedId),
+  id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .defaultNow()
     .$onUpdate(() => new Date()),
+  rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.feedId),
+  feedItemId: uuid("feed_item_id")
+    .references(() => feedItems.id)
+    .unique(),
   title: text("title").notNull(),
   link: text("link").notNull(),
   content: text("content"),
@@ -69,15 +71,16 @@ export const rssArticles = pgTable("rss_articles", {
 
 // RSS Podcast subtype
 export const rssPodcasts = pgTable("rss_podcasts", {
-  feedItemId: uuid("feed_item_id")
-    .primaryKey()
-    .references(() => feedItems.id),
-  rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.feedId),
+  id: uuid("id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .defaultNow()
     .$onUpdate(() => new Date()),
+  rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.feedId),
+  feedItemId: uuid("feed_item_id")
+    .references(() => feedItems.id)
+    .unique(),
   title: text("title").notNull(),
   link: text("link").notNull(),
   audioUrl: text("audio_url").notNull(),
