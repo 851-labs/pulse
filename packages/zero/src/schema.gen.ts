@@ -15,8 +15,8 @@
  * ------------------------------------------------------------
  */
 
-import type { ZeroCustomType } from "drizzle-zero";
-import type { default as zeroSchema } from "../../database/drizzle-zero.config";
+import type { ZeroCustomType } from "drizzle-zero"
+import type { default as zeroSchema } from "../../database/drizzle-zero.config"
 
 /**
  * The Zero schema object.
@@ -30,49 +30,29 @@ export const schema = {
         id: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feedItems",
-            "id"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feedItems", "id">,
         },
         createdAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feedItems",
-            "createdAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feedItems", "createdAt">,
           serverName: "created_at",
         },
         updatedAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feedItems",
-            "updatedAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feedItems", "updatedAt">,
           serverName: "updated_at",
         },
         kind: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feedItems",
-            "kind"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feedItems", "kind">,
         },
         feedSourceId: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feedItems",
-            "feedSourceId"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feedItems", "feedSourceId">,
           serverName: "feed_source_id",
         },
       },
@@ -85,77 +65,45 @@ export const schema = {
         id: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "id"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "id">,
         },
         createdAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "createdAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "createdAt">,
           serverName: "created_at",
         },
         updatedAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "updatedAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "updatedAt">,
           serverName: "updated_at",
         },
         kind: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "kind"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "kind">,
         },
         url: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "url"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "url">,
         },
         title: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "title"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "title">,
         },
         lastFetchedAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "lastFetchedAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "lastFetchedAt">,
           serverName: "last_fetched_at",
         },
         lastFetchError: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "feeds",
-            "lastFetchError"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "feeds", "lastFetchError">,
           serverName: "last_fetch_error",
         },
       },
@@ -167,115 +115,67 @@ export const schema = {
         id: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "id"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "id">,
         },
         createdAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "createdAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "createdAt">,
           serverName: "created_at",
         },
         updatedAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "updatedAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "updatedAt">,
           serverName: "updated_at",
         },
         rssFeedId: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "rssFeedId"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "rssFeedId">,
           serverName: "rss_feed_id",
         },
         feedItemId: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "feedItemId"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "feedItemId">,
           serverName: "feed_item_id",
         },
         title: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "title"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "title">,
         },
         link: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "link"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "link">,
         },
         content: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "content"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "content">,
         },
         summary: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "summary"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "summary">,
         },
         pubDate: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "pubDate"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "pubDate">,
           serverName: "pub_date",
         },
         author: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "author"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "author">,
         },
         metadata: {
           type: "json",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssArticles",
-            "metadata"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssArticles", "metadata">,
         },
       },
       primaryKey: ["id"],
@@ -287,88 +187,52 @@ export const schema = {
         id: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "id"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "id">,
         },
         createdAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "createdAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "createdAt">,
           serverName: "created_at",
         },
         updatedAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "updatedAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "updatedAt">,
           serverName: "updated_at",
         },
         feedId: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "feedId"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "feedId">,
           serverName: "feed_id",
         },
         siteUrl: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "siteUrl"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "siteUrl">,
           serverName: "site_url",
         },
         description: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "description"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "description">,
         },
         imageUrl: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "imageUrl"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "imageUrl">,
           serverName: "image_url",
         },
         language: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "language"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "language">,
         },
         metadata: {
           type: "json",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssFeeds",
-            "metadata"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssFeeds", "metadata">,
         },
       },
       primaryKey: ["id"],
@@ -380,126 +244,74 @@ export const schema = {
         id: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "id"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "id">,
         },
         createdAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "createdAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "createdAt">,
           serverName: "created_at",
         },
         updatedAt: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "updatedAt"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "updatedAt">,
           serverName: "updated_at",
         },
         rssFeedId: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "rssFeedId"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "rssFeedId">,
           serverName: "rss_feed_id",
         },
         feedItemId: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "feedItemId"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "feedItemId">,
           serverName: "feed_item_id",
         },
         title: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "title"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "title">,
         },
         link: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "link"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "link">,
         },
         audioUrl: {
           type: "string",
           optional: false,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "audioUrl"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "audioUrl">,
           serverName: "audio_url",
         },
         duration: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "duration"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "duration">,
         },
         pubDate: {
           type: "number",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "pubDate"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "pubDate">,
           serverName: "pub_date",
         },
         showNotes: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "showNotes"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "showNotes">,
           serverName: "show_notes",
         },
         guest: {
           type: "string",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "guest"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "guest">,
         },
         metadata: {
           type: "json",
           optional: true,
-          customType: null as unknown as ZeroCustomType<
-            typeof zeroSchema,
-            "rssPodcasts",
-            "metadata"
-          >,
+          customType: null as unknown as ZeroCustomType<typeof zeroSchema, "rssPodcasts", "metadata">,
         },
       },
       primaryKey: ["id"],
@@ -507,10 +319,10 @@ export const schema = {
     },
   },
   relationships: {},
-} as const;
+} as const
 
 /**
  * Represents the Zero schema type.
  * This type is auto-generated from your Drizzle schema definition.
  */
-export type Schema = typeof schema;
+export type Schema = typeof schema

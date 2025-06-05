@@ -5,12 +5,14 @@ This implementation provides a pixel-perfect recreation of the macOS Mail app si
 ## Key Features
 
 1. **Authentic macOS Styling**
+
    - System font stack (-apple-system, SF Pro Text)
    - Precise color values matching macOS design
    - Native-style scrollbars
    - Traffic light window controls
 
 2. **Hierarchical Navigation**
+
    - Collapsible sections with smooth animations
    - Nested items with proper indentation
    - Active state highlighting
