@@ -6,8 +6,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "zero:generate": "drizzle-zero generate --format --config ../database/drizzle-zero.config.ts --drizzle-kit-config ../database/drizzle.config.ts --tsconfig ../database/tsconfig.json --output src/schema.gen.ts",
-    "postinstall": "pnpm zero:generate"
+    "postinstall": "pnpm zero:generate",
+    "zero:generate": "drizzle-zero generate --format --config ../database/drizzle-zero.config.ts --drizzle-kit-config ../database/drizzle.config.ts --tsconfig ../database/tsconfig.json --output src/schema.gen.ts"
   },
   "dependencies": {
     "@rocicorp/zero": "0.20.2025052100"

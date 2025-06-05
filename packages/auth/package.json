@@ -6,8 +6,8 @@
   },
   "scripts": {},
   "dependencies": {
-    "better-auth": "^1.2.8",
-    "@851-labs/database": "workspace:*"
+    "@851-labs/database": "workspace:*",
+    "better-auth": "^1.2.8"
   },
   "devDependencies": {
     "dotenv": "^16.5.0",
