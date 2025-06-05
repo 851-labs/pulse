@@ -1,0 +1,11 @@
+{
+  "name": "@851-labs/zero-cache",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "zero-cache-dev --schema-path ../../packages/zero/src/schema.ts"
+  },
+  "dependencies": {
+    "@rocicorp/zero": "^0.20.2025052100"
+  },
+  "devDependencies": {}
+}
