@@ -14,9 +14,50 @@
   html,
   body {
     @apply text-gray-900 bg-gray-50 dark:bg-gray-950 dark:text-gray-200;
+    /* macOS system font stack */
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Icons', 
+                 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .using-mouse * {
     outline: none !important;
+  }
+}
+
+/* macOS-specific sidebar styles */
+@layer components {
+  .macos-sidebar {
+    /* Sidebar scroll behavior */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+
+  .macos-sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .macos-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .macos-sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  .macos-sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  /* macOS window controls */
+  .macos-traffic-lights {
+    -webkit-app-region: drag;
+  }
+
+  .macos-traffic-light {
+    -webkit-app-region: no-drag;
   }
 }
