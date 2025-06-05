@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 import { createServerFn } from "@tanstack/react-start"
 import { Login } from "../components/Login"
+import MacOSSidebar from "../components/MacOSSidebar"
 import { getSupabaseServerClient } from "../utils/supabase"
 
 export const loginFn = createServerFn({ method: "POST" })
@@ -33,4 +34,16 @@ export const Route = createFileRoute("/_authed")({
 
     throw error
   },
+  component: AuthedLayout,
 })
+
+function AuthedLayout() {
+  return (
+    <div className="flex h-screen bg-white">
+      <MacOSSidebar />
+      <div className="flex-1 overflow-auto">
+        <Outlet />
+      </div>
+    </div>
+  )
+}
