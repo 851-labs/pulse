@@ -22,6 +22,10 @@
         "dist/**"
       ]
     },
+    "deploy": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
     "auth:generate": {
       "cache": false
     },
@@ -47,6 +51,9 @@
     "types:check": {
       "dependsOn": ["^topo"],
       "outputs": [".cache/tsbuildinfo.json"]
+    },
+    "types:generate": {
+      "cache": false
     }
   },
   "globalEnv": [],

@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "account_id": "630f294bcb2c1e9b751d9fe0655a453a",
+  "name": "pulse",
+  "compatibility_date": "2025-04-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./.output/server/index.mjs",
+  "assets": {
+    "directory": "./.output/public/",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "routes": [
+    {
+      "custom_domain": true,
+      "pattern": "pulse.851.sh",
+    },
+  ],
+}

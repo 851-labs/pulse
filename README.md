@@ -1,7 +1,6 @@
 ## TODO
 
-[ ] better env management (DB_DIRECTION_CONNECTION_URL, DB_POOLER_URL)
-[ ] tanstack cloudflare setup
+- [ ] better env management (DB_DIRECTION_CONNECTION_URL, DB_POOLER_URL)
 
 ## Tech Stack
 
@@ -14,3 +13,4 @@
 - [Supabase](https://supabase.com) - Postgres database
 - [Turborepo](https://turbo.build/repo) - Monorepo Build System
 - [pnpm](https://pnpm.io) - Package Manager
+- [Cloudflare](https://cloudflare.com) - Infrastructure
