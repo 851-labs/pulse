@@ -5,6 +5,7 @@ import { DefaultCatchBoundary } from "../components/DefaultCatchBoundary"
 import { NotFound } from "../components/NotFound"
 import appCss from "../styles/app.css?url"
 import { seo } from "../utils/seo"
+import { TooltipProvider } from "~/components/ui/tooltip"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -71,29 +72,39 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="flex gap-2 p-2 text-lg">
-          <Link
-            to="/"
-            activeProps={{
-              className: "font-bold",
-            }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>{" "}
-          <Link
-            to="/posts"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Posts
-          </Link>
-        </div>
-        <hr />
-        {children}
-        <TanStackRouterDevtools position="bottom-right" />
-        <Scripts />
+        <TooltipProvider>
+          <div className="flex gap-2 p-2 text-lg">
+            <Link
+              to="/"
+              activeProps={{
+                className: "font-bold",
+              }}
+              activeOptions={{ exact: true }}
+            >
+              Home
+            </Link>{" "}
+            <Link
+              to="/posts"
+              activeProps={{
+                className: "font-bold",
+              }}
+            >
+              Posts
+            </Link>{" "}
+            <Link
+              to="/design"
+              activeProps={{
+                className: "font-bold",
+              }}
+            >
+              Design System
+            </Link>
+          </div>
+          <hr />
+          {children}
+          <TanStackRouterDevtools position="bottom-right" />
+          <Scripts />
+        </TooltipProvider>
       </body>
     </html>
   )
