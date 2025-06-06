@@ -1,6 +1,5 @@
 packages:
   - apps/*
   - packages/*
-  - tooling/*
 onlyBuiltDependencies:
   - "@rocicorp/zero-sqlite3"

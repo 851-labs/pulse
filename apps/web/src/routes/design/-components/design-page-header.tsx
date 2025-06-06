@@ -29,7 +29,7 @@ function DesignPageHeader({ title, description, componentName }: DesignPageHeade
           API Reference
         </DesignBadge>
         <DesignBadge
-          href={`https://github.com/851-labs/pulse/blob/main/apps/spa/src/components/ui/${componentSlug}.tsx`}
+          href={`https://github.com/851-labs/pulse/blob/main/apps/web/src/components/ui/${componentSlug}.tsx`}
           icon={<GithubIcon size={12} />}
         >
           Source

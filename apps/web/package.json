@@ -1,11 +1,11 @@
 {
-  "name": "@851-labs/spa",
+  "name": "@851-labs/web",
   "version": "0.0.0",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "build": "vinxi build",
-    "deploy": "wrangler deploy",
+    "deploy:web": "wrangler deploy",
     "dev": "vinxi dev --port 3010",
     "start": "vinxi start",
     "types:check": "tsc --noEmit",
