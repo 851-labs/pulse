@@ -7,7 +7,8 @@
   "scripts": {},
   "dependencies": {
     "@851-labs/database": "workspace:*",
-    "better-auth": "^1.2.8"
+    "better-auth": "^1.2.8",
+    "types:check": "tsc --noEmit"
   },
   "devDependencies": {
     "dotenv": "^16.5.0",

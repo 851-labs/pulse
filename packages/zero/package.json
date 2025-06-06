@@ -6,6 +6,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
+    "types:check": "tsc --noEmit",
     "zero:generate": "drizzle-zero generate --format --config ../database/drizzle-zero.config.ts --drizzle-kit-config ../database/drizzle.config.ts --tsconfig ../database/tsconfig.json --output src/schema.gen.ts"
   },
   "dependencies": {

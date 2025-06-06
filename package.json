@@ -12,6 +12,7 @@
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "postinstall": "turbo auth:generate && turbo db:generate && turbo zero:generate && pnpm format",
+    "types:check": "turbo types:check",
     "zero:generate": "turbo zero:generate"
   },
   "devDependencies": {

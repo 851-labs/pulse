@@ -6,7 +6,8 @@
   "scripts": {
     "build": "vinxi build",
     "dev": "vinxi dev --port 3010",
-    "start": "vinxi start"
+    "start": "vinxi start",
+    "types:check": "tsc --noEmit"
   },
   "dependencies": {
     "@rocicorp/zero": "^0.20.2025052100",
