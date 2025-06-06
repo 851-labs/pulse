@@ -1,0 +1,289 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Compound Components Architecture
+
+## Pattern Overview
+
+Compound components provide a flexible and composable API where related components work together as a cohesive unit. This pattern is popularized by libraries like Base UI.
+
+## Implementation Structure
+
+### 1. Base Primitive Components
+
+```typescript
+// Import base primitives from accessibility libraries
+import * as TooltipPrimitive from '@base-ui-components/react/tooltip'
+
+// Create individual styled components
+const Provider = TooltipPrimitive.Provider
+const Root = TooltipPrimitive.Root
+const Trigger = TooltipPrimitive.Trigger
+
+const Content = React.forwardRef<ContentRef, ContentProps>(
+  ({ className, sideOffset = 4, side = "top", ...props }, ref) => (
+    <TooltipPrimitive.Positioner side={side} sideOffset={sideOffset}>
+      <TooltipPrimitive.Popup
+        ref={ref}
+        className={cn("...", className)}
+        {...props}
+      />
+      <TooltipPrimitive.Arrow className="..." />
+    </TooltipPrimitive.Positioner>
+  )
+)
+```
+
+### 2. Compound Component Assembly
+
+```typescript
+// Create the compound component using Object.assign
+const Tooltip = Object.assign(Root, {
+  Trigger,
+  Content,
+  Arrow: TooltipPrimitive.Arrow
+})
+
+// Export pattern
+export { TooltipProvider, Tooltip }
+export type { TooltipProps, TooltipContentProps }
+```
+
+### 3. Usage Pattern
+
+```typescript
+<Tooltip>
+  <Tooltip.Trigger>
+    <Button>Trigger</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Content side="top">
+    Content here
+  </Tooltip.Content>
+</Tooltip>
+```
+
+## Architecture Rules
+
+### ✅ DO Use Compound Components When:
+- Components have multiple related sub-components
+- You need flexible composition patterns
+- Building complex UI primitives (modals, dropdowns, tooltips)
+- Following design system patterns
+- Accessibility is critical (use Base UI)
+
+### ❌ DON'T Use Compound Components When:
+- Simple components with single responsibility
+- No sub-component relationships needed
+- Performance-critical scenarios where simplicity matters
+
+## Implementation Guidelines
+
+### 1. Component Organization
+```typescript
+// Individual component definitions first
+const Root = Primitive.Root
+const Trigger = React.forwardRef<TriggerRef, TriggerProps>((props, ref) => ...)
+const Content = React.forwardRef<ContentRef, ContentProps>((props, ref) => ...)
+
+// Compound assembly last
+const Component = Object.assign(Root, { Trigger, Content })
+```
+
+### 2. Props Interface Design
+```typescript
+// Base component props
+interface ComponentProps extends React.ComponentProps<typeof Primitive.Root> {
+  // Root-level props only
+}
+
+// Sub-component props
+interface ComponentContentProps extends React.ComponentProps<typeof Primitive.Content> {
+  side?: "top" | "bottom" | "left" | "right"
+  sideOffset?: number
+  className?: string
+}
+```
+
+### 3. Forward Refs Pattern
+```typescript
+const Content = React.forwardRef<
+  React.ElementRef<typeof Primitive.Content>,
+  React.ComponentPropsWithoutRef<typeof Primitive.Content> & CustomProps
+>(({ className, side = "top", sideOffset = 4, ...props }, ref) => (
+  <Primitive.Content
+    ref={ref}
+    className={cn(baseStyles, className)}
+    {...props}
+  />
+))
+
+Content.displayName = "ComponentContent"
+```
+
+### 4. TypeScript Export Pattern
+```typescript
+// Separate value and type exports
+export { Component, ComponentProvider }
+export type { 
+  ComponentProps, 
+  ComponentContentProps, 
+  ComponentTriggerProps 
+}
+```
+
+## Styling Guidelines
+
+### 1. Use cn Utility for Class Composition
+```typescript
+import { cn } from '@/lib/utils'
+
+const Content = React.forwardRef<ContentRef, ContentProps>(
+  ({ className, ...props }, ref) => (
+    <Primitive.Content
+      className={cn(
+        "base styles here",
+        "responsive styles",
+        "state styles",
+        className
+      )}
+      {...props}
+    />
+  )
+)
+```
+
+### 2. Variant Patterns for Sub-components
+```typescript
+interface ContentProps {
+  variant?: "default" | "destructive" | "success"
+  size?: "sm" | "md" | "lg"
+}
+
+const contentVariants = {
+  variant: {
+    default: "bg-gray-900 text-white",
+    destructive: "bg-red-600 text-white", 
+    success: "bg-green-600 text-white"
+  },
+  size: {
+    sm: "px-2 py-1 text-xs",
+    md: "px-3 py-2 text-sm",
+    lg: "px-4 py-3 text-base"
+  }
+}
+```
+
+## Accessibility Requirements
+
+### 1. Always Use Accessibility Primitives
+- Always use `@base-ui-components/react`
+- Never build custom focus management
+- Leverage existing ARIA implementations
+
+### 2. Required Accessibility Props
+```typescript
+// Include all necessary ARIA props in type definitions
+interface ComponentProps extends React.ComponentProps<typeof Primitive.Root> {
+  'aria-label'?: string
+  'aria-describedby'?: string
+  // ... other ARIA props as needed
+}
+```
+
+### 3. Focus Management
+```typescript
+// Let primitives handle focus management
+const Trigger = React.forwardRef<TriggerRef, TriggerProps>((props, ref) => (
+  <Primitive.Trigger
+    ref={ref}
+    {...props} // Spreads focus handling from primitive
+  />
+))
+```
+
+## File Organization
+
+### 1. Component File Structure
+```
+components/ui/tooltip.tsx
+├── imports
+├── type definitions  
+├── individual components (Root, Trigger, Content, etc.)
+├── compound assembly
+└── exports
+```
+
+### 2. Export Conventions
+```typescript
+// At bottom of file
+export { TooltipProvider, Tooltip }
+export type { TooltipProps, TooltipContentProps, TooltipTriggerProps }
+```
+
+## Testing Considerations
+
+### 1. Test Individual Components
+```typescript
+// Test each sub-component individually
+test('Tooltip.Trigger renders correctly', () => {
+  render(<Tooltip.Trigger>Button</Tooltip.Trigger>)
+})
+
+test('Tooltip.Content shows on hover', () => {
+  render(
+    <Tooltip>
+      <Tooltip.Trigger>Button</Tooltip.Trigger>
+      <Tooltip.Content>Content</Tooltip.Content>
+    </Tooltip>
+  )
+})
+```
+
+### 2. Test Compound Interactions
+```typescript
+// Test the complete compound behavior
+test('tooltip shows content on trigger hover', async () => {
+  const user = userEvent.setup()
+  render(
+    <Tooltip>
+      <Tooltip.Trigger>Hover me</Tooltip.Trigger>
+      <Tooltip.Content>Tooltip content</Tooltip.Content>
+    </Tooltip>
+  )
+  
+  await user.hover(screen.getByRole('button'))
+  expect(screen.getByText('Tooltip content')).toBeVisible()
+})
+```
+
+## Performance Considerations
+
+### 1. Avoid Unnecessary Re-renders
+```typescript
+// Memoize complex sub-components if needed
+const Content = React.memo(React.forwardRef<ContentRef, ContentProps>(
+  (props, ref) => { /* implementation */ }
+))
+```
+
+## Migration Patterns
+
+### From Simple to Compound
+```typescript
+// Before: Simple component
+<Tooltip content="text">
+  <Button>Click me</Button>
+</Tooltip>
+
+// After: Compound component  
+<Tooltip>
+  <Tooltip.Trigger>
+    <Button>Click me</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Content>text</Tooltip.Content>
+</Tooltip>
+```
+
+The compound pattern provides better composition, accessibility, and flexibility at the cost of slightly more verbose usage.
