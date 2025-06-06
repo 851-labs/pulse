@@ -4,12 +4,12 @@ globs:
 alwaysApply: true
 ---
 ---
-description: Export conventions and code style standards
+description: File naming, export conventions, and code style standards
 globs: ["**/*.ts", "**/*.tsx"]
 alwaysApply: true
 ---
 
-# Export Conventions
+# Code Style & File Conventions
 
 ## Exports must always be at the bottom of the file as standalone statements
 
@@ -39,6 +39,47 @@ const MyComponent = () => {}
 export { myFunction, MyComponent }
 export type { MyInterface }
 ```
+
+### File Naming Examples:
+
+```
+// ❌ Don't do this
+Button.tsx
+UserProfile.tsx
+apiClient.ts
+my_component.tsx
+
+// ✅ Do this
+button.tsx
+user-profile.tsx
+api-client.ts
+my-component.tsx
+```
+
+### Import Examples:
+
+```typescript
+// ❌ Don't do this - requires index.ts barrel exports
+import { Button, Tooltip } from './components/ui'
+
+// ✅ Do this - direct imports
+import { Button } from './components/ui/button'
+import { Tooltip } from './components/ui/tooltip'
+```
+
+## File Naming Conventions
+
+- **Always use kebab-case for file names** - lowercase with hyphens for spaces
+- Examples: `button.tsx`, `tooltip.tsx`, `user-profile.tsx`, `api-client.ts`
+- Never use PascalCase, camelCase, or snake_case for file names
+- Keep file names descriptive but concise
+
+## No Barrel Exports
+
+- **Never create index.ts files** for re-exporting components
+- Always import components directly from their specific files
+- Use explicit imports: `import { Button } from './components/ui/button'`
+- Avoid: `import { Button } from './components/ui'` (requires index.ts)
 
 ## Component Structure
 
