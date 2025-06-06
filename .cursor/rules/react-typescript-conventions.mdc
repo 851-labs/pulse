@@ -1,0 +1,398 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: React, TypeScript, and component architecture style guide
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: true
+---
+
+# React & TypeScript Style Guide
+
+## Core Conventions
+
+### Exports must always be at the bottom of the file as standalone statements
+
+- Use `export { functionName }` instead of `export function functionName`
+- Use `export { ComponentName }` instead of `export const ComponentName`
+- **Always avoid default exports** - use named exports only
+- **Separate type exports** - use `export type { }` for types and interfaces
+- Group all exports in a single section at the end of the file
+
+#### Examples:
+
+```typescript
+// ❌ Don't do this
+export function myFunction() {}
+export const MyComponent = () => {}
+export default MyComponent
+export { MyInterface }
+
+// ✅ Do this
+interface MyInterface {
+  id: string
+}
+
+function myFunction() {}
+const MyComponent = () => {}
+
+export { myFunction, MyComponent }
+export type { MyInterface }
+```
+
+### File Naming Conventions
+
+- **Always use kebab-case for file names** - lowercase with hyphens for spaces
+- Examples: `button.tsx`, `tooltip.tsx`, `user-profile.tsx`, `api-client.ts`
+- Never use PascalCase, camelCase, or snake_case for file names
+- Keep file names descriptive but concise
+
+#### File Naming Examples:
+
+```
+// ❌ Don't do this
+Button.tsx
+UserProfile.tsx
+apiClient.ts
+my_component.tsx
+
+// ✅ Do this
+button.tsx
+user-profile.tsx
+api-client.ts
+my-component.tsx
+```
+
+### Import Organization
+
+- Group imports by type: external libraries first, then internal modules
+- Use named imports when possible
+- Keep imports alphabetically sorted within groups
+- **Never create index.ts files** for re-exporting components
+- Always import components directly from their specific files
+
+#### Import Examples:
+
+```typescript
+// ❌ Don't do this - requires index.ts barrel exports
+import { Button, Tooltip } from './components/ui'
+
+// ✅ Do this - direct imports
+import { Button } from './components/ui/button'
+import { Tooltip } from './components/ui/tooltip'
+```
+
+### Lucide Icons
+
+- **Always import Lucide icons directly with their built-in "Icon" suffix**
+- Use the exact icon name as exported by `lucide-react`
+- Never alias Lucide icons unless absolutely necessary
+
+```typescript
+// ✅ Do this - use built-in Icon suffix
+import { InfoIcon, EditIcon, TrashIcon, Share2Icon } from "lucide-react"
+
+// ❌ Don't do this - unnecessary aliasing
+import { Info as InfoIcon, Edit as EditIcon } from "lucide-react"
+```
+
+### Component Structure
+
+- Place interfaces and types at the top after imports
+- Define the main component/function
+- Place exports at the bottom (separate value exports from type exports)
+- Use descriptive variable names and avoid abbreviations
+- Never use default exports
+
+### TypeScript & React
+
+- Always use TypeScript for all files
+- Use interfaces for component props
+- **Never use React.forwardRef** - refs are supported as regular props in modern React
+- Use proper typing for all function parameters and return types
+
+## Compound Components Architecture
+
+### Pattern Overview
+
+Compound components provide a flexible and composable API where related components work together as a cohesive unit. This pattern is popularized by libraries like Base UI.
+
+### Implementation Structure
+
+#### 1. Base Primitive Components
+
+```typescript
+// Import base primitives from accessibility libraries
+import * as TooltipPrimitive from '@base-ui-components/react/tooltip'
+
+// Create individual styled components
+const Provider = TooltipPrimitive.Provider
+const Root = TooltipPrimitive.Root
+const Trigger = TooltipPrimitive.Trigger
+
+const Content = ({ className, sideOffset = 4, side = "top", ref, ...props }: ContentProps) => (
+  <TooltipPrimitive.Positioner side={side} sideOffset={sideOffset}>
+    <TooltipPrimitive.Popup
+      ref={ref}
+      className={cn("...", className)}
+      {...props}
+    />
+    <TooltipPrimitive.Arrow className="..." />
+  </TooltipPrimitive.Positioner>
+)
+```
+
+#### 2. Compound Component Assembly
+
+```typescript
+// Create the compound component using Object.assign
+const Tooltip = Object.assign(Root, {
+  Trigger,
+  Content,
+  Arrow: TooltipPrimitive.Arrow
+})
+
+// Export pattern
+export { TooltipProvider, Tooltip }
+export type { TooltipProps, TooltipContentProps }
+```
+
+#### 3. Usage Pattern
+
+```typescript
+<Tooltip>
+  <Tooltip.Trigger>
+    <Button>Trigger</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Content side="top">
+    Content here
+  </Tooltip.Content>
+</Tooltip>
+```
+
+### Architecture Rules
+
+#### ✅ DO Use Compound Components When:
+- Components have multiple related sub-components
+- You need flexible composition patterns
+- Building complex UI primitives (modals, dropdowns, tooltips)
+- Following design system patterns
+- Accessibility is critical (use Base UI)
+
+#### ❌ DON'T Use Compound Components When:
+- Simple components with single responsibility
+- No sub-component relationships needed
+- Performance-critical scenarios where simplicity matters
+
+### Implementation Guidelines
+
+#### 1. Component Organization
+```typescript
+// Individual component definitions first
+const Root = Primitive.Root
+const Trigger = (props: TriggerProps) => ...
+const Content = (props: ContentProps) => ...
+
+// Compound assembly last
+const Component = Object.assign(Root, { Trigger, Content })
+```
+
+#### 2. Props Interface Design
+```typescript
+// Base component props
+interface ComponentProps extends React.ComponentProps<typeof Primitive.Root> {
+  // Root-level props only
+}
+
+// Sub-component props
+interface ComponentContentProps extends React.ComponentProps<typeof Primitive.Content> {
+  side?: "top" | "bottom" | "left" | "right"
+  sideOffset?: number
+  className?: string
+}
+```
+
+#### 3. Ref Handling Pattern
+```typescript
+interface ContentProps extends React.ComponentProps<typeof Primitive.Content> {
+  side?: "top" | "bottom" | "left" | "right"
+  sideOffset?: number
+  className?: string
+  ref?: React.Ref<React.ElementRef<typeof Primitive.Content>>
+}
+
+const Content = ({ className, side = "top", sideOffset = 4, ref, ...props }: ContentProps) => (
+  <Primitive.Content
+    ref={ref}
+    className={cn(baseStyles, className)}
+    {...props}
+  />
+)
+```
+
+#### 4. TypeScript Export Pattern
+```typescript
+// Separate value and type exports
+export { Component, ComponentProvider }
+export type { 
+  ComponentProps, 
+  ComponentContentProps, 
+  ComponentTriggerProps 
+}
+```
+
+### Styling Guidelines
+
+#### 1. Use cn Utility for Class Composition
+```typescript
+import { cn } from '@/lib/utils'
+
+const Content = ({ className, ref, ...props }: ContentProps) => (
+  <Primitive.Content
+    ref={ref}
+    className={cn(
+      "base styles here",
+      "responsive styles",
+      "state styles",
+      className
+    )}
+    {...props}
+  />
+)
+```
+
+#### 2. Variant Patterns for Sub-components
+```typescript
+interface ContentProps {
+  variant?: "default" | "destructive" | "success"
+  size?: "sm" | "md" | "lg"
+}
+
+const contentVariants = {
+  variant: {
+    default: "bg-gray-900 text-white",
+    destructive: "bg-red-600 text-white", 
+    success: "bg-green-600 text-white"
+  },
+  size: {
+    sm: "px-2 py-1 text-xs",
+    md: "px-3 py-2 text-sm",
+    lg: "px-4 py-3 text-base"
+  }
+}
+```
+
+### Accessibility Requirements
+
+#### 1. Always Use Accessibility Primitives
+- Always use `@base-ui-components/react`
+- Never build custom focus management
+- Leverage existing ARIA implementations
+
+#### 2. Required Accessibility Props
+```typescript
+// Include all necessary ARIA props in type definitions
+interface ComponentProps extends React.ComponentProps<typeof Primitive.Root> {
+  'aria-label'?: string
+  'aria-describedby'?: string
+  // ... other ARIA props as needed
+}
+```
+
+#### 3. Focus Management
+```typescript
+// Let primitives handle focus management
+const Trigger = ({ ref, ...props }: TriggerProps) => (
+  <Primitive.Trigger
+    ref={ref}
+    {...props} // Spreads focus handling from primitive
+  />
+)
+```
+
+### File Organization
+
+#### 1. Component File Structure
+```
+components/ui/tooltip.tsx
+├── imports
+├── type definitions  
+├── individual components (Root, Trigger, Content, etc.)
+├── compound assembly
+└── exports
+```
+
+#### 2. Export Conventions
+```typescript
+// At bottom of file
+export { TooltipProvider, Tooltip }
+export type { TooltipProps, TooltipContentProps, TooltipTriggerProps }
+```
+
+### Testing Considerations
+
+#### 1. Test Individual Components
+```typescript
+// Test each sub-component individually
+test('Tooltip.Trigger renders correctly', () => {
+  render(<Tooltip.Trigger>Button</Tooltip.Trigger>)
+})
+
+test('Tooltip.Content shows on hover', () => {
+  render(
+    <Tooltip>
+      <Tooltip.Trigger>Button</Tooltip.Trigger>
+      <Tooltip.Content>Content</Tooltip.Content>
+    </Tooltip>
+  )
+})
+```
+
+#### 2. Test Compound Interactions
+```typescript
+// Test the complete compound behavior
+test('tooltip shows content on trigger hover', async () => {
+  const user = userEvent.setup()
+  render(
+    <Tooltip>
+      <Tooltip.Trigger>Hover me</Tooltip.Trigger>
+      <Tooltip.Content>Tooltip content</Tooltip.Content>
+    </Tooltip>
+  )
+  
+  await user.hover(screen.getByRole('button'))
+  expect(screen.getByText('Tooltip content')).toBeVisible()
+})
+```
+
+### Performance Considerations
+
+#### 1. Avoid Unnecessary Re-renders
+```typescript
+// Memoize complex sub-components if needed
+const Content = React.memo((props: ContentProps) => {
+  /* implementation */
+})
+```
+
+### Migration Patterns
+
+#### From Simple to Compound
+```typescript
+// Before: Simple component
+<Tooltip content="text">
+  <Button>Click me</Button>
+</Tooltip>
+
+// After: Compound component  
+<Tooltip>
+  <Tooltip.Trigger>
+    <Button>Click me</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Content>text</Tooltip.Content>
+</Tooltip>
+```
+
+The compound pattern provides better composition, accessibility, and flexibility at the cost of slightly more verbose usage.
