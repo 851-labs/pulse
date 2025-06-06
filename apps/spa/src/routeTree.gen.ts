@@ -12,15 +12,25 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as PostsImport } from './routes/posts'
+import { Route as DesignImport } from './routes/design'
 import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
+import { Route as DesignIndexImport } from './routes/design.index'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as DesignTooltipImport } from './routes/design.tooltip'
+import { Route as DesignButtonImport } from './routes/design.button'
 
 // Create/Update Routes
 
 const PostsRoute = PostsImport.update({
   id: '/posts',
   path: '/posts',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DesignRoute = DesignImport.update({
+  id: '/design',
+  path: '/design',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -36,10 +46,28 @@ const PostsIndexRoute = PostsIndexImport.update({
   getParentRoute: () => PostsRoute,
 } as any)
 
+const DesignIndexRoute = DesignIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DesignRoute,
+} as any)
+
 const PostsPostIdRoute = PostsPostIdImport.update({
   id: '/$postId',
   path: '/$postId',
   getParentRoute: () => PostsRoute,
+} as any)
+
+const DesignTooltipRoute = DesignTooltipImport.update({
+  id: '/tooltip',
+  path: '/tooltip',
+  getParentRoute: () => DesignRoute,
+} as any)
+
+const DesignButtonRoute = DesignButtonImport.update({
+  id: '/button',
+  path: '/button',
+  getParentRoute: () => DesignRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -53,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/design': {
+      id: '/design'
+      path: '/design'
+      fullPath: '/design'
+      preLoaderRoute: typeof DesignImport
+      parentRoute: typeof rootRoute
+    }
     '/posts': {
       id: '/posts'
       path: '/posts'
@@ -60,12 +95,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsImport
       parentRoute: typeof rootRoute
     }
+    '/design/button': {
+      id: '/design/button'
+      path: '/button'
+      fullPath: '/design/button'
+      preLoaderRoute: typeof DesignButtonImport
+      parentRoute: typeof DesignImport
+    }
+    '/design/tooltip': {
+      id: '/design/tooltip'
+      path: '/tooltip'
+      fullPath: '/design/tooltip'
+      preLoaderRoute: typeof DesignTooltipImport
+      parentRoute: typeof DesignImport
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
       fullPath: '/posts/$postId'
       preLoaderRoute: typeof PostsPostIdImport
       parentRoute: typeof PostsImport
+    }
+    '/design/': {
+      id: '/design/'
+      path: '/'
+      fullPath: '/design/'
+      preLoaderRoute: typeof DesignIndexImport
+      parentRoute: typeof DesignImport
     }
     '/posts/': {
       id: '/posts/'
@@ -78,6 +134,21 @@ declare module '@tanstack/react-router' {
 }
 
 // Create and export the route tree
+
+interface DesignRouteChildren {
+  DesignButtonRoute: typeof DesignButtonRoute
+  DesignTooltipRoute: typeof DesignTooltipRoute
+  DesignIndexRoute: typeof DesignIndexRoute
+}
+
+const DesignRouteChildren: DesignRouteChildren = {
+  DesignButtonRoute: DesignButtonRoute,
+  DesignTooltipRoute: DesignTooltipRoute,
+  DesignIndexRoute: DesignIndexRoute,
+}
+
+const DesignRouteWithChildren =
+  DesignRoute._addFileChildren(DesignRouteChildren)
 
 interface PostsRouteChildren {
   PostsPostIdRoute: typeof PostsPostIdRoute
@@ -93,41 +164,77 @@ const PostsRouteWithChildren = PostsRoute._addFileChildren(PostsRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/design': typeof DesignRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
+  '/design/button': typeof DesignButtonRoute
+  '/design/tooltip': typeof DesignTooltipRoute
   '/posts/$postId': typeof PostsPostIdRoute
+  '/design/': typeof DesignIndexRoute
   '/posts/': typeof PostsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/design/button': typeof DesignButtonRoute
+  '/design/tooltip': typeof DesignTooltipRoute
   '/posts/$postId': typeof PostsPostIdRoute
+  '/design': typeof DesignIndexRoute
   '/posts': typeof PostsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/design': typeof DesignRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
+  '/design/button': typeof DesignButtonRoute
+  '/design/tooltip': typeof DesignTooltipRoute
   '/posts/$postId': typeof PostsPostIdRoute
+  '/design/': typeof DesignIndexRoute
   '/posts/': typeof PostsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/posts' | '/posts/$postId' | '/posts/'
+  fullPaths:
+    | '/'
+    | '/design'
+    | '/posts'
+    | '/design/button'
+    | '/design/tooltip'
+    | '/posts/$postId'
+    | '/design/'
+    | '/posts/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/posts/$postId' | '/posts'
-  id: '__root__' | '/' | '/posts' | '/posts/$postId' | '/posts/'
+  to:
+    | '/'
+    | '/design/button'
+    | '/design/tooltip'
+    | '/posts/$postId'
+    | '/design'
+    | '/posts'
+  id:
+    | '__root__'
+    | '/'
+    | '/design'
+    | '/posts'
+    | '/design/button'
+    | '/design/tooltip'
+    | '/posts/$postId'
+    | '/design/'
+    | '/posts/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DesignRoute: typeof DesignRouteWithChildren
   PostsRoute: typeof PostsRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DesignRoute: DesignRouteWithChildren,
   PostsRoute: PostsRouteWithChildren,
 }
 
@@ -142,11 +249,20 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/design",
         "/posts"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/design": {
+      "filePath": "design.tsx",
+      "children": [
+        "/design/button",
+        "/design/tooltip",
+        "/design/"
+      ]
     },
     "/posts": {
       "filePath": "posts.tsx",
@@ -155,9 +271,21 @@ export const routeTree = rootRoute
         "/posts/"
       ]
     },
+    "/design/button": {
+      "filePath": "design.button.tsx",
+      "parent": "/design"
+    },
+    "/design/tooltip": {
+      "filePath": "design.tooltip.tsx",
+      "parent": "/design"
+    },
     "/posts/$postId": {
       "filePath": "posts.$postId.tsx",
       "parent": "/posts"
+    },
+    "/design/": {
+      "filePath": "design.index.tsx",
+      "parent": "/design"
     },
     "/posts/": {
       "filePath": "posts.index.tsx",
