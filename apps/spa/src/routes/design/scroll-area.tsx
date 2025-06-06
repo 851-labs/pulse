@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { ScrollArea } from "../../components/ui/scroll-area"
 import { DesignExampleSection } from "./-components/design-example-section"
+import { DesignPageHeader } from "./-components/design-page-header"
 
 export const Route = createFileRoute("/design/scroll-area")({
   component: ScrollAreaPage,
@@ -9,10 +10,7 @@ export const Route = createFileRoute("/design/scroll-area")({
 function ScrollAreaPage() {
   return (
     <div className="max-w-4xl space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Scroll Area</h1>
-        <p className="mt-2 text-sm text-gray-600">A custom scroll container with native scrollbars.</p>
-      </div>
+      <DesignPageHeader title="Scroll Area" description="A custom scroll container with native scrollbars." />
 
       <div className="space-y-6">
         <DesignExampleSection

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { Button } from "../../components/ui/button"
 import { Tooltip } from "../../components/ui/tooltip"
 import { DesignExampleSection } from "./-components/design-example-section"
+import { DesignPageHeader } from "./-components/design-page-header"
 
 export const Route = createFileRoute("/design/tooltip")({
   component: TooltipShowcase,
@@ -11,10 +12,10 @@ function TooltipShowcase() {
   return (
     <div className="max-w-4xl">
       <div className="mb-8">
-        <h1 className="mb-4 text-3xl font-bold text-gray-900">Tooltip</h1>
-        <p className="text-lg text-gray-600">
-          An informational overlay component that appears on hover, with flexible positioning options.
-        </p>
+        <DesignPageHeader
+          title="Tooltip"
+          description="An informational overlay component that appears on hover, with flexible positioning options."
+        />
       </div>
 
       {/* Basic Usage Section */}

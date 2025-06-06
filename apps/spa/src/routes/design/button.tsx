@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { useState } from "react"
 import { Button } from "~/components/ui/button"
 import { DesignExampleSection } from "./-components/design-example-section"
+import { DesignPageHeader } from "./-components/design-page-header"
 
 export const Route = createFileRoute("/design/button")({
   component: ButtonShowcase,
@@ -18,8 +19,10 @@ function ButtonShowcase() {
   return (
     <div className="max-w-4xl">
       <div className="mb-8">
-        <h1 className="mb-4 text-3xl font-bold text-gray-900">Button</h1>
-        <p className="text-lg text-gray-600">A versatile button component with multiple variants, sizes, and states.</p>
+        <DesignPageHeader
+          title="Button"
+          description="A versatile button component with multiple variants, sizes, and states."
+        />
       </div>
 
       {/* Variants Section */}
