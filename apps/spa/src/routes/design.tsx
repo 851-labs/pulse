@@ -7,9 +7,9 @@ export const Route = createFileRoute("/design")({
 
 function DesignLayout() {
   return (
-    <div className="flex h-full w-full flex-row flex-nowrap bg-white">
+    <div className="flex h-full w-full flex-row flex-nowrap bg-gray-100">
       {/* Sidebar Navigation */}
-      <div className="w-60 border-r border-gray-200/60 bg-gray-100">
+      <div className="w-60 bg-gray-100">
         <div className="px-4 py-6">
           <h2 className="mb-6 px-2 text-sm font-semibold tracking-tight text-gray-900">Design System</h2>
           <nav className="space-y-0.5">
@@ -67,13 +67,15 @@ function DesignLayout() {
       </div>
 
       {/* Main Content */}
-      <ScrollArea className="flex-1">
-        <ScrollArea.Viewport>
-          <ScrollArea.Content className="p-12">
-            <Outlet />
-          </ScrollArea.Content>
-        </ScrollArea.Viewport>
-      </ScrollArea>
+      <div className="flex min-h-0 flex-1 flex-col flex-nowrap p-2 pl-0">
+        <ScrollArea className="flex min-h-0 flex-1 flex-col flex-nowrap rounded-md border bg-white">
+          <ScrollArea.Viewport>
+            <ScrollArea.Content className="p-12">
+              <Outlet />
+            </ScrollArea.Content>
+          </ScrollArea.Viewport>
+        </ScrollArea>
+      </div>
     </div>
   )
 }

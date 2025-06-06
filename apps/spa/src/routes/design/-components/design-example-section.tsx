@@ -1,6 +1,6 @@
 import { Tabs } from "@base-ui-components/react/tabs"
-import { CopyIcon } from "lucide-react"
 import React from "react"
+import { CodeBlock } from "~/components/ui/code-block"
 
 // -------------------------------------------------------------------------------------------------------------------
 
@@ -10,9 +10,17 @@ interface DesignExampleSectionProps {
   code?: string
   demoClassName?: string
   description?: string
+  language?: string
 }
 
-function DesignExampleImplementation({ title, children, code, demoClassName, description }: DesignExampleSectionProps) {
+function DesignExampleImplementation({
+  title,
+  children,
+  code,
+  demoClassName,
+  description,
+  language = "tsx",
+}: DesignExampleSectionProps) {
   return (
     <section className="mb-12">
       <h2 className="mb-6 text-xl font-semibold text-gray-900">{title}</h2>
@@ -44,11 +52,7 @@ function DesignExampleImplementation({ title, children, code, demoClassName, des
             </Tabs.Panel>
 
             <Tabs.Panel value="code" className="p-0">
-              <div className="bg-gray-900 p-4">
-                <pre className="text-sm text-green-400">
-                  <code>{code}</code>
-                </pre>
-              </div>
+              <CodeBlock code={code} language={language} className="rounded-none" />
             </Tabs.Panel>
           </Tabs.Root>
         ) : (
@@ -69,16 +73,18 @@ interface DesignExampleProps {
   code: string
   demoClassName?: string
   description?: string
+  language?: string
   children: React.ReactNode
 }
 
-function DesignExampleSection({ title, code, demoClassName, description, children }: DesignExampleProps) {
+function DesignExampleSection({ title, code, demoClassName, description, language, children }: DesignExampleProps) {
   return (
     <DesignExampleImplementation
       title={title}
       code={code.trim()}
       demoClassName={demoClassName}
       description={description}
+      language={language}
     >
       {children}
     </DesignExampleImplementation>
