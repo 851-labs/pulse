@@ -1,25 +1,10 @@
 import { HeadContent, Link, Outlet, Scripts, createRootRoute } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
-import { createServerFn } from "@tanstack/react-start"
 import * as React from "react"
 import { DefaultCatchBoundary } from "../components/DefaultCatchBoundary"
 import { NotFound } from "../components/NotFound"
 import appCss from "../styles/app.css?url"
 import { seo } from "../utils/seo"
-import { getSupabaseServerClient } from "../utils/supabase"
-
-const fetchUser = createServerFn({ method: "GET" }).handler(async () => {
-  const supabase = await getSupabaseServerClient()
-  const { data, error: _error } = await supabase.auth.getUser()
-
-  if (!data.user?.email) {
-    return null
-  }
-
-  return {
-    email: data.user.email,
-  }
-})
 
 export const Route = createRootRoute({
   head: () => ({
@@ -59,13 +44,7 @@ export const Route = createRootRoute({
       { rel: "icon", href: "/favicon.ico" },
     ],
   }),
-  beforeLoad: async () => {
-    const user = await fetchUser()
 
-    return {
-      user,
-    }
-  },
   errorComponent: (props) => {
     return (
       <RootDocument>
@@ -86,8 +65,6 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const { user } = Route.useRouteContext()
-
   return (
     <html>
       <head>
@@ -112,16 +89,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           >
             Posts
           </Link>
-          <div className="ml-auto">
-            {user ? (
-              <>
-                <span className="mr-2">{user.email}</span>
-                <Link to="/logout">Logout</Link>
-              </>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-          </div>
         </div>
         <hr />
         {children}
