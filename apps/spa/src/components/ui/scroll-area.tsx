@@ -28,7 +28,12 @@ interface ScrollAreaViewportProps extends React.ComponentPropsWithoutRef<typeof 
 }
 
 function ScrollAreaViewport({ className, ...props }: ScrollAreaViewportProps) {
-  return <ScrollAreaPrimitive.Viewport className={cn("h-full w-full rounded-[inherit]", className)} {...props} />
+  return (
+    <ScrollAreaPrimitive.Viewport
+      className={cn("h-full w-full overscroll-contain rounded-[inherit]", className)}
+      {...props}
+    />
+  )
 }
 
 // -------------------------------------------------------------------------------------------------------------------

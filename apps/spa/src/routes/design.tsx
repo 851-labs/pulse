@@ -1,4 +1,5 @@
 import { Link, Outlet, createFileRoute } from "@tanstack/react-router"
+import { ScrollArea } from "~/components/ui/scroll-area"
 
 export const Route = createFileRoute("/design")({
   component: DesignLayout,
@@ -6,7 +7,7 @@ export const Route = createFileRoute("/design")({
 
 function DesignLayout() {
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex h-full w-full flex-row flex-nowrap bg-white">
       {/* Sidebar Navigation */}
       <div className="w-60 border-r border-gray-200/60 bg-gray-100">
         <div className="px-4 py-6">
@@ -66,9 +67,13 @@ function DesignLayout() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-12">
-        <Outlet />
-      </div>
+      <ScrollArea className="flex-1">
+        <ScrollArea.Viewport>
+          <ScrollArea.Content className="p-12">
+            <Outlet />
+          </ScrollArea.Content>
+        </ScrollArea.Viewport>
+      </ScrollArea>
     </div>
   )
 }

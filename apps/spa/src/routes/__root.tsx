@@ -6,6 +6,7 @@ import { NotFound } from "../components/NotFound"
 import appCss from "../styles/app.css?url"
 import { seo } from "../utils/seo"
 import { TooltipProvider } from "~/components/ui/tooltip"
+import { cn } from "~/utils/cn"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -71,37 +72,17 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body
+        className={cn(
+          "cursor-default select-none",
+          "antialiased [text-rendering:optimizelegibility] [text-size-adjust:100%]",
+          "fixed h-full min-h-svh w-full overflow-hidden",
+          "flex flex-col",
+        )}
+      >
         <TooltipProvider>
-          <div className="flex gap-2 p-2 text-lg">
-            <Link
-              to="/"
-              activeProps={{
-                className: "font-bold",
-              }}
-              activeOptions={{ exact: true }}
-            >
-              Home
-            </Link>{" "}
-            <Link
-              to="/posts"
-              activeProps={{
-                className: "font-bold",
-              }}
-            >
-              Posts
-            </Link>{" "}
-            <Link
-              to="/design"
-              activeProps={{
-                className: "font-bold",
-              }}
-            >
-              Design System
-            </Link>
-          </div>
-          <hr />
           {children}
+
           <TanStackRouterDevtools position="bottom-right" />
           <Scripts />
         </TooltipProvider>

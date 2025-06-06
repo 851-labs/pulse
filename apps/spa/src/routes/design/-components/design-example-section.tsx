@@ -23,9 +23,10 @@ interface DesignExampleSectionProps {
 function DesignExampleImplementation({ title, children, code, demoClassName, description }: DesignExampleSectionProps) {
   return (
     <section className="mb-12">
-      <h2 className="mb-6 text-2xl font-semibold text-gray-900">{title}</h2>
+      <h2 className="mb-6 text-xl font-semibold text-gray-900">{title}</h2>
       {description && <p className="mb-4 text-gray-600">{description}</p>}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+
+      <div className="rounded-lg border border-gray-200 bg-white p-6">
         <div className={`${demoClassName || "flex justify-center"} ${code ? "mb-4" : ""}`}>{children}</div>
         {code && (
           <Collapsible.Root>
