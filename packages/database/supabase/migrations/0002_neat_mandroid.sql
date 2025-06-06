@@ -1,0 +1,2 @@
+-- DROP TYPE "public"."feed_item_kind";--> statement-breakpoint
+-- DROP TYPE "public"."feed_kind";

@@ -15,6 +15,13 @@
       "when": 1749006526544,
       "tag": "0001_eminent_skrulls",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1749177127324,
+      "tag": "0002_neat_mandroid",
+      "breakpoints": true
     }
   ]
 }
