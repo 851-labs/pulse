@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { Button } from "../components/ui/button"
 import { useState } from "react"
+import { Button } from "~/components/ui/button"
+import { CodeExample } from "~/components/ui/showcase-section"
 
 export const Route = createFileRoute("/design/button")({
   component: ButtonShowcase,
@@ -22,65 +23,47 @@ function ButtonShowcase() {
       </div>
 
       {/* Variants Section */}
-      <section className="mb-12">
-        <h2 className="mb-6 text-2xl font-semibold text-gray-900">Variants</h2>
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <div className="mb-6 flex flex-wrap gap-4">
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="destructive">Destructive</Button>
-          </div>
-          <div className="rounded-lg bg-gray-900 p-4">
-            <pre className="text-sm text-green-400">
-              <code>{`<Button variant="primary">Primary</Button>
+      <CodeExample
+        title="Variants"
+        demoClassName="flex flex-wrap gap-4"
+        code={`<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="outline">Outline</Button>
-<Button variant="destructive">Destructive</Button>`}</code>
-            </pre>
-          </div>
-        </div>
-      </section>
+<Button variant="destructive">Destructive</Button>`}
+      >
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="destructive">Destructive</Button>
+      </CodeExample>
 
       {/* Sizes Section */}
-      <section className="mb-12">
-        <h2 className="mb-6 text-2xl font-semibold text-gray-900">Sizes</h2>
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <div className="mb-6 flex flex-wrap items-center gap-4">
-            <Button size="sm">Small</Button>
-            <Button size="md">Medium</Button>
-            <Button size="lg">Large</Button>
-          </div>
-          <div className="rounded-lg bg-gray-900 p-4">
-            <pre className="text-sm text-green-400">
-              <code>{`<Button size="sm">Small</Button>
+      <CodeExample
+        title="Sizes"
+        demoClassName="flex flex-wrap items-center gap-4"
+        code={`<Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
-<Button size="lg">Large</Button>`}</code>
-            </pre>
-          </div>
-        </div>
-      </section>
+<Button size="lg">Large</Button>`}
+      >
+        <Button size="sm">Small</Button>
+        <Button size="md">Medium</Button>
+        <Button size="lg">Large</Button>
+      </CodeExample>
 
       {/* States Section */}
-      <section className="mb-12">
-        <h2 className="mb-6 text-2xl font-semibold text-gray-900">States</h2>
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <div className="mb-6 flex flex-wrap gap-4">
-            <Button>Normal</Button>
-            <Button disabled>Disabled</Button>
-            <Button loading={loading} onClick={handleLoadingDemo}>
-              {loading ? "Loading..." : "Click for Loading"}
-            </Button>
-          </div>
-          <div className="rounded-lg bg-gray-900 p-4">
-            <pre className="text-sm text-green-400">
-              <code>{`<Button>Normal</Button>
+      <CodeExample
+        title="States"
+        demoClassName="flex flex-wrap gap-4"
+        code={`<Button>Normal</Button>
 <Button disabled>Disabled</Button>
-<Button loading={isLoading}>Loading Button</Button>`}</code>
-            </pre>
-          </div>
-        </div>
-      </section>
+<Button loading={isLoading}>Loading Button</Button>`}
+      >
+        <Button>Normal</Button>
+        <Button disabled>Disabled</Button>
+        <Button loading={loading} onClick={handleLoadingDemo}>
+          {loading ? "Loading..." : "Click for Loading"}
+        </Button>
+      </CodeExample>
 
       {/* Props Documentation */}
       <section className="mb-12">

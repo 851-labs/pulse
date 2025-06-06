@@ -15,11 +15,11 @@ import { Route as PostsImport } from './routes/posts'
 import { Route as DesignImport } from './routes/design'
 import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
-import { Route as DesignIndexImport } from './routes/design.index'
+import { Route as DesignIndexImport } from './routes/design/index'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
-import { Route as DesignTooltipImport } from './routes/design.tooltip'
+import { Route as DesignTooltipImport } from './routes/design/tooltip'
 import { Route as DesignScrollAreaImport } from './routes/design/scroll-area'
-import { Route as DesignButtonImport } from './routes/design.button'
+import { Route as DesignButtonImport } from './routes/design/button'
 
 // Create/Update Routes
 
@@ -295,7 +295,7 @@ export const routeTree = rootRoute
       ]
     },
     "/design/button": {
-      "filePath": "design.button.tsx",
+      "filePath": "design/button.tsx",
       "parent": "/design"
     },
     "/design/scroll-area": {
@@ -303,7 +303,7 @@ export const routeTree = rootRoute
       "parent": "/design"
     },
     "/design/tooltip": {
-      "filePath": "design.tooltip.tsx",
+      "filePath": "design/tooltip.tsx",
       "parent": "/design"
     },
     "/posts/$postId": {
@@ -311,7 +311,7 @@ export const routeTree = rootRoute
       "parent": "/posts"
     },
     "/design/": {
-      "filePath": "design.index.tsx",
+      "filePath": "design/index.tsx",
       "parent": "/design"
     },
     "/posts/": {

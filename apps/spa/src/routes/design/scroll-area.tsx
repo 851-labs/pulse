@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { ScrollArea } from "../../components/ui/scroll-area"
+import { CodeExample } from "../../components/ui/showcase-section"
 
 export const Route = createFileRoute("/design/scroll-area")({
   component: ScrollAreaPage,
@@ -14,8 +15,23 @@ function ScrollAreaPage() {
       </div>
 
       <div className="space-y-6">
-        <div>
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">Basic Example</h2>
+        <CodeExample
+          title="Basic Example"
+          demoClassName=""
+          code={`<ScrollArea className="h-72 w-full">
+  <ScrollArea.Viewport>
+    <ScrollArea.Content className="p-4">
+      <div className="max-w-none space-y-4">
+        <h3 className="text-lg font-medium">Vernacular Architecture</h3>
+        <p className="text-sm leading-relaxed text-gray-700">
+          Vernacular architecture is building done outside any academic tradition...
+        </p>
+        {/* More content */}
+      </div>
+    </ScrollArea.Content>
+  </ScrollArea.Viewport>
+</ScrollArea>`}
+        >
           <div className="rounded-lg border border-gray-200">
             <ScrollArea className="h-72 w-full">
               <ScrollArea.Viewport>
@@ -58,10 +74,28 @@ function ScrollAreaPage() {
               </ScrollArea.Viewport>
             </ScrollArea>
           </div>
-        </div>
+        </CodeExample>
 
-        <div>
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">Horizontal Scroll</h2>
+        <CodeExample
+          title="Horizontal Scroll"
+          demoClassName=""
+          code={`<ScrollArea className="h-24 w-full" orientation="horizontal">
+  <ScrollArea.Viewport>
+    <ScrollArea.Content>
+      <div className="flex space-x-4 p-4">
+        {Array.from({ length: 20 }, (_, i) => (
+          <div
+            key={i}
+            className="flex h-16 w-32 shrink-0 items-center justify-center rounded-md bg-gray-100 text-sm font-medium"
+          >
+            Item {i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea.Content>
+  </ScrollArea.Viewport>
+</ScrollArea>`}
+        >
           <div className="rounded-lg border border-gray-200">
             <ScrollArea className="h-24 w-full" orientation="horizontal">
               <ScrollArea.Viewport>
@@ -80,13 +114,14 @@ function ScrollAreaPage() {
               </ScrollArea.Viewport>
             </ScrollArea>
           </div>
-        </div>
+        </CodeExample>
 
         <div>
           <h2 className="mb-4 text-lg font-semibold text-gray-900">Usage</h2>
-          <div className="rounded-lg bg-gray-50 p-4">
-            <pre className="overflow-x-auto text-sm text-gray-700">
-              {`import { ScrollArea } from '@/components/ui/scroll-area'
+          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="rounded-lg bg-gray-900 p-4">
+              <pre className="text-sm text-green-400">
+                <code>{`import { ScrollArea } from '@/components/ui/scroll-area'
 
 <ScrollArea className="h-72 w-full">
   <ScrollArea.Viewport>
@@ -97,8 +132,9 @@ function ScrollAreaPage() {
   <ScrollArea.Scrollbar>
     <ScrollArea.Thumb />
   </ScrollArea.Scrollbar>
-</ScrollArea>`}
-            </pre>
+</ScrollArea>`}</code>
+              </pre>
+            </div>
           </div>
         </div>
       </div>
