@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { useState } from "react"
 import { Button } from "~/components/ui/button"
-import { CodeExample } from "~/components/ui/showcase-section"
+import { DesignExampleSection } from "./-components/design-example-section"
 
 export const Route = createFileRoute("/design/button")({
   component: ButtonShowcase,
@@ -23,7 +23,7 @@ function ButtonShowcase() {
       </div>
 
       {/* Variants Section */}
-      <CodeExample
+      <DesignExampleSection
         title="Variants"
         demoClassName="flex flex-wrap gap-4"
         code={`<Button variant="primary">Primary</Button>
@@ -35,10 +35,10 @@ function ButtonShowcase() {
         <Button variant="secondary">Secondary</Button>
         <Button variant="outline">Outline</Button>
         <Button variant="destructive">Destructive</Button>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* Sizes Section */}
-      <CodeExample
+      <DesignExampleSection
         title="Sizes"
         demoClassName="flex flex-wrap items-center gap-4"
         code={`<Button size="sm">Small</Button>
@@ -48,10 +48,10 @@ function ButtonShowcase() {
         <Button size="sm">Small</Button>
         <Button size="md">Medium</Button>
         <Button size="lg">Large</Button>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* States Section */}
-      <CodeExample
+      <DesignExampleSection
         title="States"
         demoClassName="flex flex-wrap gap-4"
         code={`<Button>Normal</Button>
@@ -63,7 +63,7 @@ function ButtonShowcase() {
         <Button loading={loading} onClick={handleLoadingDemo}>
           {loading ? "Loading..." : "Click for Loading"}
         </Button>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* Props Documentation */}
       <section className="mb-12">

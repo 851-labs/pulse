@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { Button } from "../../components/ui/button"
 import { Tooltip } from "../../components/ui/tooltip"
-import { CodeExample } from "../../components/ui/showcase-section"
+import { DesignExampleSection } from "./-components/design-example-section"
 
 export const Route = createFileRoute("/design/tooltip")({
   component: TooltipShowcase,
@@ -18,7 +18,7 @@ function TooltipShowcase() {
       </div>
 
       {/* Basic Usage Section */}
-      <CodeExample
+      <DesignExampleSection
         title="Basic Usage"
         code={`<Tooltip>
   <Tooltip.Trigger>
@@ -33,10 +33,10 @@ function TooltipShowcase() {
           </Tooltip.Trigger>
           <Tooltip.Content>This is a helpful tooltip</Tooltip.Content>
         </Tooltip>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* Positioning Section */}
-      <CodeExample
+      <DesignExampleSection
         title="Positioning"
         demoClassName=""
         code={`<Tooltip>
@@ -97,10 +97,10 @@ function TooltipShowcase() {
             </Tooltip>
           </div>
         </div>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* Different Content Types */}
-      <CodeExample
+      <DesignExampleSection
         title="Different Content Types"
         demoClassName="flex flex-wrap gap-4"
         code={`<Tooltip>
@@ -160,10 +160,10 @@ function TooltipShowcase() {
           </Tooltip.Trigger>
           <Tooltip.Content>Tooltip on an icon</Tooltip.Content>
         </Tooltip>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* Interactive Examples */}
-      <CodeExample
+      <DesignExampleSection
         title="Interactive Examples"
         demoClassName="space-y-4"
         code={`<Tooltip>
@@ -224,7 +224,7 @@ function TooltipShowcase() {
             <Tooltip.Content>Share this item</Tooltip.Content>
           </Tooltip>
         </div>
-      </CodeExample>
+      </DesignExampleSection>
 
       {/* API Documentation */}
       <section className="mb-12">

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { ScrollArea } from "../../components/ui/scroll-area"
-import { CodeExample } from "../../components/ui/showcase-section"
+import { DesignExampleSection } from "./-components/design-example-section"
 
 export const Route = createFileRoute("/design/scroll-area")({
   component: ScrollAreaPage,
@@ -15,7 +15,7 @@ function ScrollAreaPage() {
       </div>
 
       <div className="space-y-6">
-        <CodeExample
+        <DesignExampleSection
           title="Basic Example"
           demoClassName=""
           code={`<ScrollArea className="h-72 w-full">
@@ -74,9 +74,9 @@ function ScrollAreaPage() {
               </ScrollArea.Viewport>
             </ScrollArea>
           </div>
-        </CodeExample>
+        </DesignExampleSection>
 
-        <CodeExample
+        <DesignExampleSection
           title="Horizontal Scroll"
           demoClassName=""
           code={`<ScrollArea className="h-24 w-full" orientation="horizontal">
@@ -114,7 +114,7 @@ function ScrollAreaPage() {
               </ScrollArea.Viewport>
             </ScrollArea>
           </div>
-        </CodeExample>
+        </DesignExampleSection>
 
         <div>
           <h2 className="mb-4 text-lg font-semibold text-gray-900">Usage</h2>

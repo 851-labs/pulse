@@ -1,14 +1,6 @@
 import React from "react"
 import { Collapsible } from "@base-ui-components/react/collapsible"
 
-interface ShowcaseSectionProps {
-  title: string
-  children: React.ReactNode
-  code?: string
-  demoClassName?: string
-  description?: string
-}
-
 // Chevron icon component for the collapsible trigger
 function ChevronIcon({ className }: { className?: string }) {
   return (
@@ -18,7 +10,17 @@ function ChevronIcon({ className }: { className?: string }) {
   )
 }
 
-function ShowcaseSection({ title, children, code, demoClassName, description }: ShowcaseSectionProps) {
+// -------------------------------------------------------------------------------------------------------------------
+
+interface DesignExampleSectionProps {
+  title: string
+  children: React.ReactNode
+  code?: string
+  demoClassName?: string
+  description?: string
+}
+
+function DesignExampleImplementation({ title, children, code, demoClassName, description }: DesignExampleSectionProps) {
   return (
     <section className="mb-12">
       <h2 className="mb-6 text-2xl font-semibold text-gray-900">{title}</h2>
@@ -45,8 +47,10 @@ function ShowcaseSection({ title, children, code, demoClassName, description }: 
   )
 }
 
+// -------------------------------------------------------------------------------------------------------------------
+
 // Simple component that takes JSX and shows both the rendered output and code
-interface CodeExampleProps {
+interface DesignExampleProps {
   title: string
   code: string
   demoClassName?: string
@@ -54,12 +58,19 @@ interface CodeExampleProps {
   children: React.ReactNode
 }
 
-function CodeExample({ title, code, demoClassName, description, children }: CodeExampleProps) {
+function DesignExampleSection({ title, code, demoClassName, description, children }: DesignExampleProps) {
   return (
-    <ShowcaseSection title={title} code={code.trim()} demoClassName={demoClassName} description={description}>
+    <DesignExampleImplementation
+      title={title}
+      code={code.trim()}
+      demoClassName={demoClassName}
+      description={description}
+    >
       {children}
-    </ShowcaseSection>
+    </DesignExampleImplementation>
   )
 }
 
-export { ShowcaseSection, CodeExample }
+// -------------------------------------------------------------------------------------------------------------------
+
+export { DesignExampleSection }
