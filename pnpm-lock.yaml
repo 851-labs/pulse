@@ -17,6 +17,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.12
         version: 0.6.12(prettier@3.5.3)
+      sherif:
+        specifier: ^1.5.0
+        version: 1.5.0
       turbo:
         specifier: ^2.5.4
         version: 2.5.4
@@ -64,7 +67,7 @@ importers:
         specifier: ^3.4.17
         version: 3.4.17
       typescript:
-        specifier: ^5.7.2
+        specifier: ^5.8.3
         version: 5.8.3
       vite-tsconfig-paths:
         specifier: ^5.1.4
@@ -89,7 +92,7 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
       typescript:
-        specifier: 5.8.3
+        specifier: ^5.8.3
         version: 5.8.3
 
   packages/database:
@@ -117,20 +120,20 @@ importers:
         specifier: 4.19.4
         version: 4.19.4
       typescript:
-        specifier: 5.8.3
+        specifier: ^5.8.3
         version: 5.8.3
 
   packages/zero:
     dependencies:
       '@rocicorp/zero':
-        specifier: 0.20.2025052100
+        specifier: ^0.20.2025052100
         version: 0.20.2025052100(@opentelemetry/core@2.0.1(@opentelemetry/api@1.9.0))(typescript@5.8.3)
     devDependencies:
       drizzle-zero:
         specifier: ^0.10.5
         version: 0.10.5(@rocicorp/zero@0.20.2025052100(@opentelemetry/core@2.0.1(@opentelemetry/api@1.9.0))(typescript@5.8.3))(drizzle-orm@0.44.1(@opentelemetry/api@1.9.0)(@prisma/client@5.22.0(prisma@5.22.0))(@types/better-sqlite3@7.6.13)(@types/pg@8.6.1)(better-sqlite3@11.10.0)(kysely@0.28.2)(postgres@3.4.7)(prisma@5.22.0))(prettier@3.5.3)
       typescript:
-        specifier: 5.8.3
+        specifier: ^5.8.3
         version: 5.8.3
 
 packages:
@@ -4736,6 +4739,40 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  sherif-darwin-arm64@1.5.0:
+    resolution: {integrity: sha512-4BYYCEXVJ8+xqfnntxnyGcwgByjrHSeKOitPYdBPMB3aauptC4GUMeVqXRXf5JNbx3lRKg8bZdoq0QPnbsr6BQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  sherif-darwin-x64@1.5.0:
+    resolution: {integrity: sha512-Y8wkqXzpZt2D5n0KnEXKK1QosoPofDpx4IDzxjyVjGvhR4YBoKcyU93tY9mEyYXMlzQGlyezGHpZkFeP0bioDA==}
+    cpu: [x64]
+    os: [darwin]
+
+  sherif-linux-arm64@1.5.0:
+    resolution: {integrity: sha512-l4JBoYCD+mJkwxNuQhLXloySXqSNOdTwJ9euBw8GbRjW+iXK2LxFOya1SlZy8CXZngTOBpNNoO9jH4E9NgI0XA==}
+    cpu: [arm64]
+    os: [linux]
+
+  sherif-linux-x64@1.5.0:
+    resolution: {integrity: sha512-RaSRnYe58Y6yLTeE8Hw5xmEDn7ted1F4kT1FFSR+ola36R5lnCeWV+xZqjKWU7JE8fVSqApJ4EL0mwtwGZT98Q==}
+    cpu: [x64]
+    os: [linux]
+
+  sherif-windows-arm64@1.5.0:
+    resolution: {integrity: sha512-xcOnhsCTcg0fg1/SYhFN4AErk1k8QfW4sRK8ziaEt/SDtUGIYmt/+3CsWCBIGoMSaURS8upcU2JtofI3P82qHQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  sherif-windows-x64@1.5.0:
+    resolution: {integrity: sha512-kWFctc7kEgYq9IoTFWVGQdZv725eMOwhkF3JpkuApMLF/K+pDb1JKHUbmU52nHdMMKpT3SDVqrHyCaUOKmxU5w==}
+    cpu: [x64]
+    os: [win32]
+
+  sherif@1.5.0:
+    resolution: {integrity: sha512-sCn0w5b3APLRJauj4UDaK5TV5fyuc1ndDGv2cgt0lnb7zVUAekFm6D2duHVg4sf8/ZlDGFcLRc9Y/DxSRXdOAA==}
+    hasBin: true
 
   shimmer@1.2.1:
     resolution: {integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==}
@@ -10537,6 +10574,33 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
+
+  sherif-darwin-arm64@1.5.0:
+    optional: true
+
+  sherif-darwin-x64@1.5.0:
+    optional: true
+
+  sherif-linux-arm64@1.5.0:
+    optional: true
+
+  sherif-linux-x64@1.5.0:
+    optional: true
+
+  sherif-windows-arm64@1.5.0:
+    optional: true
+
+  sherif-windows-x64@1.5.0:
+    optional: true
+
+  sherif@1.5.0:
+    optionalDependencies:
+      sherif-darwin-arm64: 1.5.0
+      sherif-darwin-x64: 1.5.0
+      sherif-linux-arm64: 1.5.0
+      sherif-linux-x64: 1.5.0
+      sherif-windows-arm64: 1.5.0
+      sherif-windows-x64: 1.5.0
 
   shimmer@1.2.1: {}
 

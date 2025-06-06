@@ -10,10 +10,10 @@
     "zero:generate": "drizzle-zero generate --format --config ../database/drizzle-zero.config.ts --drizzle-kit-config ../database/drizzle.config.ts --tsconfig ../database/tsconfig.json --output src/schema.gen.ts"
   },
   "dependencies": {
-    "@rocicorp/zero": "0.20.2025052100"
+    "@rocicorp/zero": "^0.20.2025052100"
   },
   "devDependencies": {
     "drizzle-zero": "^0.10.5",
-    "typescript": "5.8.3"
+    "typescript": "^5.8.3"
   }
 }

@@ -24,6 +24,6 @@
     "drizzle-seed": "^0.3.1",
     "drizzle-zero": "^0.10.5",
     "tsx": "4.19.4",
-    "typescript": "5.8.3"
+    "typescript": "^5.8.3"
   }
 }

@@ -1,6 +1,7 @@
 {
   "name": "@851-labs/pulse",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "auth:generate": "turbo auth:generate",
     "build": "turbo build",
@@ -11,7 +12,8 @@
     "db:studio": "turbo db:studio",
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
-    "postinstall": "turbo auth:generate && turbo db:generate && turbo zero:generate && pnpm format",
+    "postinstall": "pnpm lint:ws && pnpm auth:generate && pnpm db:generate && pnpm zero:generate && pnpm format",
+    "lint:ws": "sherif",
     "types:check": "turbo types:check",
     "zero:generate": "turbo zero:generate"
   },
@@ -19,6 +21,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.15",
     "prettier-plugin-tailwindcss": "^0.6.12",
+    "sherif": "^1.5.0",
     "turbo": "^2.5.4"
   },
   "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912"
