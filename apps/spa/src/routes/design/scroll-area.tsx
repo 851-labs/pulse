@@ -117,28 +117,6 @@ function ScrollAreaPage() {
             </ScrollArea>
           </div>
         </DesignExampleSection>
-
-        <div>
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">Usage</h2>
-          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="rounded-lg bg-gray-900 p-4">
-              <pre className="text-sm text-green-400">
-                <code>{`import { ScrollArea } from '@/components/ui/scroll-area'
-
-<ScrollArea className="h-72 w-full">
-  <ScrollArea.Viewport>
-    <ScrollArea.Content>
-      {/* Your content */}
-    </ScrollArea.Content>
-  </ScrollArea.Viewport>
-  <ScrollArea.Scrollbar>
-    <ScrollArea.Thumb />
-  </ScrollArea.Scrollbar>
-</ScrollArea>`}</code>
-              </pre>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )

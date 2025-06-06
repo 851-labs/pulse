@@ -22,7 +22,7 @@ function DesignLayout() {
                 className: "text-gray-700 hover:bg-gray-100/80",
               }}
               activeOptions={{ exact: true }}
-              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
+              className="flex h-7 items-center rounded-md px-2 text-[13px] font-medium"
             >
               Overview
             </Link>
@@ -34,7 +34,7 @@ function DesignLayout() {
               inactiveProps={{
                 className: "text-gray-700 hover:bg-gray-100/80",
               }}
-              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
+              className="flex h-7 items-center rounded-md px-2 text-[13px] font-medium"
             >
               Button
             </Link>
@@ -46,7 +46,7 @@ function DesignLayout() {
               inactiveProps={{
                 className: "text-gray-700 hover:bg-gray-100/80",
               }}
-              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
+              className="flex h-7 items-center rounded-md px-2 text-[13px] font-medium"
             >
               Tooltip
             </Link>
@@ -58,7 +58,7 @@ function DesignLayout() {
               inactiveProps={{
                 className: "text-gray-700 hover:bg-gray-100/80",
               }}
-              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
+              className="flex h-7 items-center rounded-md px-2 text-[13px] font-medium"
             >
               Scroll Area
             </Link>
