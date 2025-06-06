@@ -16,6 +16,7 @@ function TooltipShowcase() {
         <DesignPageHeader
           title="Tooltip"
           description="An informational overlay component that appears on hover, with flexible positioning options."
+          componentName="tooltip"
         />
       </div>
 

@@ -22,6 +22,7 @@ function ButtonShowcase() {
         <DesignPageHeader
           title="Button"
           description="A versatile button component with multiple variants, sizes, and states."
+          componentName="button"
         />
       </div>
 

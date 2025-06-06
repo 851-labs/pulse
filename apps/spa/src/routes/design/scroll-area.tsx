@@ -10,7 +10,11 @@ export const Route = createFileRoute("/design/scroll-area")({
 function ScrollAreaPage() {
   return (
     <div className="max-w-4xl space-y-8">
-      <DesignPageHeader title="Scroll Area" description="A custom scroll container with native scrollbars." />
+      <DesignPageHeader
+        title="Scroll Area"
+        description="A custom scroll container with native scrollbars."
+        componentName="scroll-area"
+      />
 
       <div className="space-y-6">
         <DesignExampleSection
