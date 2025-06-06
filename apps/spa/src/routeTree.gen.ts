@@ -18,6 +18,7 @@ import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as DesignIndexImport } from './routes/design.index'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as DesignTooltipImport } from './routes/design.tooltip'
+import { Route as DesignScrollAreaImport } from './routes/design/scroll-area'
 import { Route as DesignButtonImport } from './routes/design.button'
 
 // Create/Update Routes
@@ -64,6 +65,12 @@ const DesignTooltipRoute = DesignTooltipImport.update({
   getParentRoute: () => DesignRoute,
 } as any)
 
+const DesignScrollAreaRoute = DesignScrollAreaImport.update({
+  id: '/scroll-area',
+  path: '/scroll-area',
+  getParentRoute: () => DesignRoute,
+} as any)
+
 const DesignButtonRoute = DesignButtonImport.update({
   id: '/button',
   path: '/button',
@@ -102,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DesignButtonImport
       parentRoute: typeof DesignImport
     }
+    '/design/scroll-area': {
+      id: '/design/scroll-area'
+      path: '/scroll-area'
+      fullPath: '/design/scroll-area'
+      preLoaderRoute: typeof DesignScrollAreaImport
+      parentRoute: typeof DesignImport
+    }
     '/design/tooltip': {
       id: '/design/tooltip'
       path: '/tooltip'
@@ -137,12 +151,14 @@ declare module '@tanstack/react-router' {
 
 interface DesignRouteChildren {
   DesignButtonRoute: typeof DesignButtonRoute
+  DesignScrollAreaRoute: typeof DesignScrollAreaRoute
   DesignTooltipRoute: typeof DesignTooltipRoute
   DesignIndexRoute: typeof DesignIndexRoute
 }
 
 const DesignRouteChildren: DesignRouteChildren = {
   DesignButtonRoute: DesignButtonRoute,
+  DesignScrollAreaRoute: DesignScrollAreaRoute,
   DesignTooltipRoute: DesignTooltipRoute,
   DesignIndexRoute: DesignIndexRoute,
 }
@@ -167,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/design': typeof DesignRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
   '/design/button': typeof DesignButtonRoute
+  '/design/scroll-area': typeof DesignScrollAreaRoute
   '/design/tooltip': typeof DesignTooltipRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/design/': typeof DesignIndexRoute
@@ -176,6 +193,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/design/button': typeof DesignButtonRoute
+  '/design/scroll-area': typeof DesignScrollAreaRoute
   '/design/tooltip': typeof DesignTooltipRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/design': typeof DesignIndexRoute
@@ -188,6 +206,7 @@ export interface FileRoutesById {
   '/design': typeof DesignRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
   '/design/button': typeof DesignButtonRoute
+  '/design/scroll-area': typeof DesignScrollAreaRoute
   '/design/tooltip': typeof DesignTooltipRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/design/': typeof DesignIndexRoute
@@ -201,6 +220,7 @@ export interface FileRouteTypes {
     | '/design'
     | '/posts'
     | '/design/button'
+    | '/design/scroll-area'
     | '/design/tooltip'
     | '/posts/$postId'
     | '/design/'
@@ -209,6 +229,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/design/button'
+    | '/design/scroll-area'
     | '/design/tooltip'
     | '/posts/$postId'
     | '/design'
@@ -219,6 +240,7 @@ export interface FileRouteTypes {
     | '/design'
     | '/posts'
     | '/design/button'
+    | '/design/scroll-area'
     | '/design/tooltip'
     | '/posts/$postId'
     | '/design/'
@@ -260,6 +282,7 @@ export const routeTree = rootRoute
       "filePath": "design.tsx",
       "children": [
         "/design/button",
+        "/design/scroll-area",
         "/design/tooltip",
         "/design/"
       ]
@@ -273,6 +296,10 @@ export const routeTree = rootRoute
     },
     "/design/button": {
       "filePath": "design.button.tsx",
+      "parent": "/design"
+    },
+    "/design/scroll-area": {
+      "filePath": "design/scroll-area.tsx",
       "parent": "/design"
     },
     "/design/tooltip": {

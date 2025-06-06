@@ -8,46 +8,58 @@ function DesignLayout() {
   return (
     <div className="flex min-h-screen bg-white">
       {/* Sidebar Navigation */}
-      <div className="w-72 border-r border-gray-200/80 bg-gray-50/50">
-        <div className="p-8">
-          <h2 className="mb-8 text-lg font-medium tracking-tight text-gray-900">Design System</h2>
-          <nav className="space-y-1">
+      <div className="w-60 border-r border-gray-200/60 bg-gray-100">
+        <div className="px-4 py-6">
+          <h2 className="mb-6 px-2 text-sm font-semibold tracking-tight text-gray-900">Design System</h2>
+          <nav className="space-y-0.5">
             <Link
               to="/design"
               activeProps={{
-                className: "bg-gray-900 text-white shadow-sm",
+                className: "bg-blue-500 text-white",
               }}
               inactiveProps={{
-                className: "text-gray-700 hover:text-gray-900 hover:bg-gray-100/60",
+                className: "text-gray-700 hover:bg-gray-100/80",
               }}
               activeOptions={{ exact: true }}
-              className="flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
+              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
             >
               Overview
             </Link>
             <Link
               to="/design/button"
               activeProps={{
-                className: "bg-gray-900 text-white shadow-sm",
+                className: "bg-blue-500 text-white",
               }}
               inactiveProps={{
-                className: "text-gray-700 hover:text-gray-900 hover:bg-gray-100/60",
+                className: "text-gray-700 hover:bg-gray-100/80",
               }}
-              className="flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
+              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
             >
               Button
             </Link>
             <Link
               to="/design/tooltip"
               activeProps={{
-                className: "bg-gray-900 text-white shadow-sm",
+                className: "bg-blue-500 text-white",
               }}
               inactiveProps={{
-                className: "text-gray-700 hover:text-gray-900 hover:bg-gray-100/60",
+                className: "text-gray-700 hover:bg-gray-100/80",
               }}
-              className="flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
+              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
             >
               Tooltip
+            </Link>
+            <Link
+              to="/design/scroll-area"
+              activeProps={{
+                className: "bg-blue-500 text-white",
+              }}
+              inactiveProps={{
+                className: "text-gray-700 hover:bg-gray-100/80",
+              }}
+              className="flex h-7 items-center rounded-md px-2 text-xs font-medium"
+            >
+              Scroll Area
             </Link>
           </nav>
         </div>
