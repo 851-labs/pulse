@@ -6,7 +6,6 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "postinstall": "pnpm zero:generate",
     "zero:generate": "drizzle-zero generate --format --config ../database/drizzle-zero.config.ts --drizzle-kit-config ../database/drizzle.config.ts --tsconfig ../database/tsconfig.json --output src/schema.gen.ts"
   },
   "dependencies": {

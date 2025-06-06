@@ -2,8 +2,17 @@
   "name": "@851-labs/pulse",
   "version": "0.0.0",
   "scripts": {
+    "auth:generate": "turbo auth:generate",
+    "build": "turbo build",
+    "db:generate": "turbo db:generate",
+    "db:migrate": "turbo db:migrate",
+    "db:pull": "turbo db:pull && pnpm format",
+    "db:seed": "turbo db:seed",
+    "db:studio": "turbo db:studio",
     "dev": "turbo dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "postinstall": "turbo auth:generate && turbo db:generate && turbo zero:generate && pnpm format",
+    "zero:generate": "turbo zero:generate"
   },
   "devDependencies": {
     "prettier": "^3.5.3",

@@ -6,7 +6,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "auth:generate": "pnpm dlx @better-auth/cli@latest generate --config ../auth/src/index.ts --output src/schema-auth.gen.ts",
+    "auth:generate": "pnpm dlx @better-auth/cli@latest generate --y --config ../auth/src/index.ts --output src/schema-auth.gen.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:pull": "drizzle-kit pull",
