@@ -62,7 +62,7 @@ function CodeBlock({ code, language = "typescript", theme = "github-dark", class
         "shadow-inner",
         "before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:border before:border-gray-800/20",
         // Custom typography for code
-        "[&_pre]:!font-mono [&_pre]:!text-[13px] [&_pre]:!leading-relaxed",
+        "[&_pre]:font-mono! [&_pre]:text-[13px]! [&_pre]:leading-relaxed!",
         "[&_pre]:m-0 [&_pre]:p-4",
         // Ensure proper overflow handling
         "[&_pre]:overflow-x-auto [&_pre]:whitespace-pre",

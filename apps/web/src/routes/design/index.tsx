@@ -33,7 +33,7 @@ function MyApp() {
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="rounded-xl border border-gray-200/60 bg-white p-8 shadow-sm transition-shadow duration-200 hover:shadow-md">
+        <div className="shadow-xs rounded-xl border border-gray-200/60 bg-white p-8 transition-shadow duration-200 hover:shadow-md">
           <h3 className="mb-4 text-xl font-medium text-gray-900">Features</h3>
           <p className="mb-6 leading-relaxed text-gray-600">
             Modern components built with the latest web standards and best practices.
@@ -54,7 +54,7 @@ function MyApp() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-gray-200/60 bg-white p-8 shadow-sm transition-shadow duration-200 hover:shadow-md">
+        <div className="shadow-xs rounded-xl border border-gray-200/60 bg-white p-8 transition-shadow duration-200 hover:shadow-md">
           <h3 className="mb-4 text-xl font-medium text-gray-900">Philosophy</h3>
           <p className="mb-6 leading-relaxed text-gray-600">
             Built with modern development practices and a focus on consistency and usability.
@@ -78,7 +78,7 @@ function MyApp() {
 
       <div className="rounded-xl border border-gray-200/60 bg-gray-50/50 p-8">
         <h2 className="mb-6 text-2xl font-medium tracking-tight text-gray-900">Getting Started</h2>
-        <CodeBlock code={exampleCode} language="tsx" className="rounded-lg shadow-sm" />
+        <CodeBlock code={exampleCode} language="tsx" className="shadow-xs rounded-lg" />
       </div>
     </div>
   )

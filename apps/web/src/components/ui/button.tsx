@@ -4,7 +4,7 @@ import { cn } from "../../utils/cn"
 // -------------------------------------------------------------------------------------------------------------------
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "destructive"
+  variant?: "primary" | "secondary" | "outline-solid" | "destructive"
   size?: "sm" | "md" | "lg"
   loading?: boolean
 }
@@ -12,14 +12,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", loading, disabled, children, ...props }, ref) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:pointer-events-none"
+      "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:pointer-events-none"
 
     const variants = {
-      primary: "bg-gray-900 text-white hover:bg-gray-800 shadow-sm hover:shadow-md focus-visible:ring-gray-500",
+      primary: "bg-gray-900 text-white hover:bg-gray-800 shadow-xs hover:shadow-md focus-visible:ring-gray-500",
       secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-200/60 focus-visible:ring-gray-400",
       outline:
-        "border border-gray-300/80 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400/80 shadow-sm focus-visible:ring-gray-400",
-      destructive: "bg-red-500 text-white hover:bg-red-600 shadow-sm hover:shadow-md focus-visible:ring-red-400",
+        "border border-gray-300/80 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400/80 shadow-xs focus-visible:ring-gray-400",
+      destructive: "bg-red-500 text-white hover:bg-red-600 shadow-xs hover:shadow-md focus-visible:ring-red-400",
     }
 
     const sizes = {

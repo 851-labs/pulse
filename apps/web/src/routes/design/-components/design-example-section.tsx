@@ -33,17 +33,17 @@ function DesignExampleImplementation({
               <Tabs.List className="relative z-0 flex gap-1">
                 <Tabs.Tab
                   value="preview"
-                  className="flex h-8 select-none items-center justify-center border-0 px-3 text-sm font-medium text-gray-600 outline-none before:inset-x-0 before:inset-y-1 before:rounded-sm before:-outline-offset-1 before:outline-blue-800 hover:text-gray-900 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline focus-visible:before:outline-2 data-[selected]:text-gray-900"
+                  className="outline-hidden before:rounded-xs focus-visible:before:outline-solid data-selected:text-gray-900 flex h-8 select-none items-center justify-center border-0 px-3 text-sm font-medium text-gray-600 before:inset-x-0 before:inset-y-1 before:-outline-offset-1 before:outline-blue-800 hover:text-gray-900 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline-2"
                 >
                   Preview
                 </Tabs.Tab>
                 <Tabs.Tab
                   value="code"
-                  className="flex h-8 select-none items-center justify-center border-0 px-3 text-sm font-medium text-gray-600 outline-none before:inset-x-0 before:inset-y-1 before:rounded-sm before:-outline-offset-1 before:outline-blue-800 hover:text-gray-900 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline focus-visible:before:outline-2 data-[selected]:text-gray-900"
+                  className="outline-hidden before:rounded-xs focus-visible:before:outline-solid data-selected:text-gray-900 flex h-8 select-none items-center justify-center border-0 px-3 text-sm font-medium text-gray-600 before:inset-x-0 before:inset-y-1 before:-outline-offset-1 before:outline-blue-800 hover:text-gray-900 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline-2"
                 >
                   Code
                 </Tabs.Tab>
-                <Tabs.Indicator className="absolute left-0 top-1/2 z-[-1] h-7 w-[var(--active-tab-width)] -translate-y-1/2 translate-x-[var(--active-tab-left)] rounded-md bg-gray-100 transition-all duration-200 ease-in-out" />
+                <Tabs.Indicator className="w-(--active-tab-width) translate-x-(--active-tab-left) absolute left-0 top-1/2 z-[-1] h-7 -translate-y-1/2 rounded-md bg-gray-100 transition-all duration-200 ease-in-out" />
               </Tabs.List>
             </div>
 

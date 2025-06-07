@@ -72,7 +72,7 @@ function ButtonShowcase() {
       {/* Props Documentation */}
       <section className="mb-12">
         <h2 className="mb-6 text-2xl font-semibold text-gray-900">Props</h2>
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+        <div className="shadow-xs overflow-hidden rounded-lg border border-gray-200 bg-white">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -90,7 +90,7 @@ function ButtonShowcase() {
               <tr>
                 <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">variant</td>
                 <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                  "primary" | "secondary" | "outline" | "destructive"
+                  "primary" | "secondary" | "outline-solid" | "destructive"
                 </td>
                 <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">"primary"</td>
                 <td className="px-6 py-4 text-sm text-gray-500">Visual style of the button</td>

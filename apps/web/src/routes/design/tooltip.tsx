@@ -108,49 +108,49 @@ function TooltipShowcase() {
         demoClassName="flex flex-wrap gap-4"
         code={`<Tooltip>
   <Tooltip.Trigger>
-    <span className="cursor-help rounded bg-gray-100 px-3 py-2">Simple Text</span>
+    <span className="cursor-help rounded-sm bg-gray-100 px-3 py-2">Simple Text</span>
   </Tooltip.Trigger>
   <Tooltip.Content>Simple text tooltip</Tooltip.Content>
 </Tooltip>
 
 <Tooltip>
   <Tooltip.Trigger>
-    <span className="cursor-help rounded bg-blue-100 px-3 py-2">Long Text</span>
+    <span className="cursor-help rounded-sm bg-blue-100 px-3 py-2">Long Text</span>
   </Tooltip.Trigger>
   <Tooltip.Content>This is a much longer tooltip that contains more detailed information</Tooltip.Content>
 </Tooltip>
 
 <Tooltip>
   <Tooltip.Trigger>
-    <span className="cursor-help rounded bg-green-100 px-3 py-2">With Emoji</span>
+    <span className="cursor-help rounded-sm bg-green-100 px-3 py-2">With Emoji</span>
   </Tooltip.Trigger>
   <Tooltip.Content>🎉 Emojis work too!</Tooltip.Content>
 </Tooltip>`}
       >
         <Tooltip>
           <Tooltip.Trigger>
-            <span className="cursor-help rounded bg-gray-100 px-3 py-2">Simple Text</span>
+            <span className="cursor-help rounded-sm bg-gray-100 px-3 py-2">Simple Text</span>
           </Tooltip.Trigger>
           <Tooltip.Content>Simple text tooltip</Tooltip.Content>
         </Tooltip>
 
         <Tooltip>
           <Tooltip.Trigger>
-            <span className="cursor-help rounded bg-blue-100 px-3 py-2">Long Text</span>
+            <span className="cursor-help rounded-sm bg-blue-100 px-3 py-2">Long Text</span>
           </Tooltip.Trigger>
           <Tooltip.Content>This is a much longer tooltip that contains more detailed information</Tooltip.Content>
         </Tooltip>
 
         <Tooltip>
           <Tooltip.Trigger>
-            <span className="cursor-help rounded bg-green-100 px-3 py-2">With Emoji</span>
+            <span className="cursor-help rounded-sm bg-green-100 px-3 py-2">With Emoji</span>
           </Tooltip.Trigger>
           <Tooltip.Content>🎉 Emojis work too!</Tooltip.Content>
         </Tooltip>
 
         <Tooltip>
           <Tooltip.Trigger>
-            <div className="cursor-help rounded bg-purple-100 p-2">
+            <div className="cursor-help rounded-sm bg-purple-100 p-2">
               <InfoIcon className="h-5 w-5 text-purple-600" />
             </div>
           </Tooltip.Trigger>
@@ -208,7 +208,7 @@ function TooltipShowcase() {
         {/* Tooltip.Content Props */}
         <div className="mb-8">
           <h3 className="mb-4 text-lg font-semibold text-gray-900">Tooltip.Content Props</h3>
-          <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+          <div className="shadow-xs overflow-hidden rounded-lg border border-gray-200 bg-white">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -263,7 +263,7 @@ function TooltipShowcase() {
         {/* Usage Note */}
         <div className="rounded-lg bg-blue-50 p-4">
           <div className="flex">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <svg className="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fillRule="evenodd"

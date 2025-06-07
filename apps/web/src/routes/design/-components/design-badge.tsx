@@ -14,7 +14,7 @@ function DesignBadge({ children, href, className, icon }: DesignBadgeProps) {
 
   const content = (
     <>
-      {icon && <span className="flex-shrink-0">{icon}</span>}
+      {icon && <span className="shrink-0">{icon}</span>}
       <span>{children}</span>
     </>
   )

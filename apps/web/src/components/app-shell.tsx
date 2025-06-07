@@ -44,7 +44,7 @@ function AppShellSidebar({ children, className, ...props }: AppShellSidebarProps
 function AppShellContent({ children, className, padding = "p-12", ...props }: AppShellContentProps) {
   return (
     <div className={cn("flex min-h-0 flex-1 flex-col flex-nowrap p-2 pl-0", className)} {...props}>
-      <ScrollArea className="shadow-xs flex min-h-0 flex-1 flex-col flex-nowrap rounded-lg border-[0.5px] bg-white dark:bg-gray-900">
+      <ScrollArea className="shadow-2xs flex min-h-0 flex-1 flex-col flex-nowrap rounded-lg border-[0.5px] bg-white dark:bg-gray-900">
         <ScrollArea.Viewport>
           <ScrollArea.Content className={cn(padding)}>{children}</ScrollArea.Content>
         </ScrollArea.Viewport>

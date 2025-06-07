@@ -62,8 +62,8 @@ function ScrollAreaScrollbar({ className, orientation = "vertical", ...props }: 
         orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-px",
         orientation === "horizontal" && "h-2.5 w-full flex-col border-t border-t-transparent p-px",
         "opacity-0 transition-opacity delay-300",
-        "data-[hovering]:opacity-100 data-[hovering]:delay-0 data-[hovering]:duration-75",
-        "data-[scrolling]:opacity-100 data-[scrolling]:delay-0 data-[scrolling]:duration-75",
+        "data-hovering:opacity-100 data-hovering:delay-0 data-hovering:duration-75",
+        "data-scrolling:opacity-100 data-scrolling:delay-0 data-scrolling:duration-75",
         className,
       )}
       {...props}

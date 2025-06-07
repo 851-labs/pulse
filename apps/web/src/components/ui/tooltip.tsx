@@ -29,7 +29,7 @@ function Content({ className, side = "top", sideOffset = 10, align = "center", .
         <TooltipPrimitive.Popup
           {...props}
           className={cn(
-            "flex origin-[var(--transform-origin)] flex-col rounded-md bg-[canvas] px-2 py-1.5",
+            "origin-(--transform-origin) flex flex-col rounded-md bg-[canvas] px-2 py-1.5",
             // Text
             "text-xs font-[450] leading-none text-gray-700 dark:text-gray-100",
             // Background color
@@ -40,9 +40,9 @@ function Content({ className, side = "top", sideOffset = 10, align = "center", .
             "border-[0.5px]",
             // Animations
             "transition-[transform,scale,opacity]",
-            "data-[ending-style]:scale-90 data-[ending-style]:opacity-0",
-            "data-[instant]:duration-0",
-            "data-[starting-style]:scale-90 data-[starting-style]:opacity-0",
+            "data-ending-style:scale-90 data-ending-style:opacity-0",
+            "data-instant:duration-0",
+            "data-starting-style:scale-90 data-starting-style:opacity-0",
           )}
         >
           {props.children}
