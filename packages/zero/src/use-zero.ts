@@ -1,4 +1,5 @@
-import { createUseZero, Schema } from "@rocicorp/zero/react"
+import { createUseZero } from "@rocicorp/zero/react"
+import { Schema } from "./schema"
 
 const useZero = createUseZero<Schema, any>()
 

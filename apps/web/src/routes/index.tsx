@@ -12,8 +12,6 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const z = useZero()
-
-  // Query for feeds ordered by title
   const [feeds] = useQuery(z.query.feeds.orderBy("title", "asc"))
 
   return (

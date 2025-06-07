@@ -1,7 +1,7 @@
 import { Zero } from "@rocicorp/zero"
-import { schema } from "./schema"
+import { Schema, schema } from "./schema"
 
-const zero = new Zero({
+const zero = new Zero<Schema>({
   userID: "anon",
   server: "http://localhost:4848",
   schema,

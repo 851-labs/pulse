@@ -1,6 +1,4 @@
-import { Zero } from "@rocicorp/zero"
 import { ZeroProvider as ZeroProviderReact } from "@rocicorp/zero/react"
-import { schema, Schema } from "./schema"
 import { zero } from "./client"
 
 type ZeroProviderProps = React.PropsWithChildren
