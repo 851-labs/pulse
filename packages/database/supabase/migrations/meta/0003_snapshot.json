@@ -93,12 +93,8 @@
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -200,12 +196,8 @@
           "name": "feed_items_feed_source_id_feeds_id_fk",
           "tableFrom": "feed_items",
           "tableTo": "feeds",
-          "columnsFrom": [
-            "feed_source_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["feed_source_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -311,9 +303,7 @@
         "feeds_url_unique": {
           "name": "feeds_url_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "url"
-          ]
+          "columns": ["url"]
         }
       },
       "policies": {},
@@ -489,12 +479,8 @@
           "name": "rss_articles_rss_feed_id_rss_feeds_feed_id_fk",
           "tableFrom": "rss_articles",
           "tableTo": "rss_feeds",
-          "columnsFrom": [
-            "rss_feed_id"
-          ],
-          "columnsTo": [
-            "feed_id"
-          ],
+          "columnsFrom": ["rss_feed_id"],
+          "columnsTo": ["feed_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -502,12 +488,8 @@
           "name": "rss_articles_feed_item_id_feed_items_id_fk",
           "tableFrom": "rss_articles",
           "tableTo": "feed_items",
-          "columnsFrom": [
-            "feed_item_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["feed_item_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -517,9 +499,7 @@
         "rss_articles_feed_item_id_unique": {
           "name": "rss_articles_feed_item_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "feed_item_id"
-          ]
+          "columns": ["feed_item_id"]
         }
       },
       "policies": {},
@@ -626,12 +606,8 @@
           "name": "rss_feeds_feed_id_feeds_id_fk",
           "tableFrom": "rss_feeds",
           "tableTo": "feeds",
-          "columnsFrom": [
-            "feed_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["feed_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -641,9 +617,7 @@
         "rss_feeds_feed_id_unique": {
           "name": "rss_feeds_feed_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "feed_id"
-          ]
+          "columns": ["feed_id"]
         }
       },
       "policies": {},
@@ -825,12 +799,8 @@
           "name": "rss_podcasts_rss_feed_id_rss_feeds_feed_id_fk",
           "tableFrom": "rss_podcasts",
           "tableTo": "rss_feeds",
-          "columnsFrom": [
-            "rss_feed_id"
-          ],
-          "columnsTo": [
-            "feed_id"
-          ],
+          "columnsFrom": ["rss_feed_id"],
+          "columnsTo": ["feed_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -838,12 +808,8 @@
           "name": "rss_podcasts_feed_item_id_feed_items_id_fk",
           "tableFrom": "rss_podcasts",
           "tableTo": "feed_items",
-          "columnsFrom": [
-            "feed_item_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["feed_item_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -853,9 +819,7 @@
         "rss_podcasts_feed_item_id_unique": {
           "name": "rss_podcasts_feed_item_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "feed_item_id"
-          ]
+          "columns": ["feed_item_id"]
         }
       },
       "policies": {},
@@ -921,12 +885,8 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -936,9 +896,7 @@
         "session_token_unique": {
           "name": "session_token_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
+          "columns": ["token"]
         }
       },
       "policies": {},
@@ -999,9 +957,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},

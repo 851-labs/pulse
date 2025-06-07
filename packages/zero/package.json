@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    "./use-zero": "./src/use-zero.ts",
+    "./zero-provider": "./src/zero-provider.tsx"
   },
   "scripts": {
     "types:check": "tsc --noEmit",
@@ -13,6 +14,7 @@
     "@rocicorp/zero": "^0.20.2025052100"
   },
   "devDependencies": {
+    "@types/react": "^19.0.8",
     "drizzle-zero": "^0.10.5",
     "typescript": "^5.8.3"
   }
