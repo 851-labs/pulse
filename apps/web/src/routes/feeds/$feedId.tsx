@@ -21,9 +21,7 @@ function FeedComponent() {
   const rssFeed = rssFeeds[0]
 
   // Query for RSS articles from this feed
-  const [articles] = useQuery(z.query.rssArticles.where("rssFeedId", rssFeed?.feedId || "").orderBy("pubDate", "desc"))
-
-  console.log({ feeds, rssFeeds, articles })
+  const [articles] = useQuery(z.query.rssArticles.where("rssFeedId", rssFeed?.id || "").orderBy("pubDate", "desc"))
 
   if (!feed) {
     return (
