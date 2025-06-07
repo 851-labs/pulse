@@ -16,7 +16,7 @@
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
-    "drizzle-orm": "0.44.1",
+    "drizzle-orm": "0.44.2",
     "postgres": "3.4.7",
     "rss-parser": "^3.13.0"
   },
