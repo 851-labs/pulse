@@ -78,7 +78,7 @@ const rssArticles = pgTable(
       .notNull()
       .defaultNow()
       .$onUpdate(() => new Date()),
-    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.feedId),
+    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.id),
     feedItemId: uuid("feed_item_id")
       .references(() => feedItems.id)
       .unique(),
@@ -114,7 +114,7 @@ const rssPodcasts = pgTable(
       .notNull()
       .defaultNow()
       .$onUpdate(() => new Date()),
-    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.feedId),
+    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.id),
     feedItemId: uuid("feed_item_id")
       .references(() => feedItems.id)
       .unique(),

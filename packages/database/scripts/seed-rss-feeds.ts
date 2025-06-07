@@ -85,22 +85,29 @@ async function seedRSSFeeds(feedsToSeed: RSSFeedInput[]): Promise<void> {
       // Check if RSS feed metadata already exists
       const existingRSSFeed = await db.select().from(rssFeeds).where(eq(rssFeeds.feedId, feedId)).limit(1)
 
+      let rssFeedId: string
+
       if (existingRSSFeed.length === 0) {
         // Insert RSS feed metadata
-        await db.insert(rssFeeds).values({
-          feedId: feedId,
-          siteUrl: rssFeed.link || null,
-          description: rssFeed.description || null,
-          imageUrl: rssFeed.image?.url || null,
-          language: rssFeed.language || null,
-          metadata: {
-            generator: rssFeed.generator || null,
-            lastBuildDate: rssFeed.lastBuildDate || null,
-            copyright: rssFeed.copyright || null,
-            managingEditor: rssFeed.managingEditor || null,
-            webMaster: rssFeed.webMaster || null,
-          },
-        })
+        const newRSSFeed = await db
+          .insert(rssFeeds)
+          .values({
+            feedId: feedId,
+            siteUrl: rssFeed.link || null,
+            description: rssFeed.description || null,
+            imageUrl: rssFeed.image?.url || null,
+            language: rssFeed.language || null,
+            metadata: {
+              generator: rssFeed.generator || null,
+              lastBuildDate: rssFeed.lastBuildDate || null,
+              copyright: rssFeed.copyright || null,
+              managingEditor: rssFeed.managingEditor || null,
+              webMaster: rssFeed.webMaster || null,
+            },
+          })
+          .returning({ id: rssFeeds.id })
+
+        rssFeedId = newRSSFeed[0].id
       } else {
         // Update existing RSS feed metadata
         await db
@@ -120,6 +127,8 @@ async function seedRSSFeeds(feedsToSeed: RSSFeedInput[]): Promise<void> {
             updatedAt: new Date(),
           })
           .where(eq(rssFeeds.feedId, feedId))
+
+        rssFeedId = existingRSSFeed[0].id
       }
 
       // Process articles
@@ -187,7 +196,7 @@ async function seedRSSFeeds(feedsToSeed: RSSFeedInput[]): Promise<void> {
 
           // Create new RSS article
           await db.insert(rssArticles).values({
-            rssFeedId: feedId,
+            rssFeedId: rssFeedId,
             feedItemId: feedItemId,
             title: item.title || "Untitled",
             link: item.link,
