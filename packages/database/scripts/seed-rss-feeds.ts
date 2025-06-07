@@ -1,7 +1,7 @@
 import { config } from "dotenv"
 import Parser from "rss-parser"
 import { eq } from "drizzle-orm"
-import { db } from "../src/client"
+import { db, client } from "../src/client"
 import { feeds, rssFeeds, feedItems, rssArticles } from "../src/schema"
 
 config({ path: ".env" })
@@ -9,6 +9,33 @@ config({ path: ".env" })
 interface RSSFeedInput {
   url: string
   title?: string
+}
+
+// Helper function to format duration in a human-readable way
+function formatDuration(seconds: number): string {
+  if (seconds < 60) {
+    return `${seconds}s`
+  }
+
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = seconds % 60
+
+  if (minutes < 60) {
+    return remainingSeconds > 0 ? `${minutes}m ${remainingSeconds}s` : `${minutes}m`
+  }
+
+  const hours = Math.floor(minutes / 60)
+  const remainingMinutes = minutes % 60
+
+  let result = `${hours}h`
+  if (remainingMinutes > 0) {
+    result += ` ${remainingMinutes}m`
+  }
+  if (remainingSeconds > 0) {
+    result += ` ${remainingSeconds}s`
+  }
+
+  return result
 }
 
 // RSS parser instance
@@ -219,7 +246,7 @@ async function seedRSSFeeds(feedsToSeed: RSSFeedInput[]): Promise<void> {
       }
 
       const processingTime = Math.round((Date.now() - startTime) / 1000)
-      console.log(`✅ Processed feed "${rssFeed.title}" in ${processingTime}s:`)
+      console.log(`✅ Processed feed "${rssFeed.title}" in ${formatDuration(processingTime)}:`)
       console.log(`   📝 ${newArticleCount} new articles`)
       console.log(`   🔄 ${updatedArticleCount} updated articles`)
       console.log(
@@ -245,7 +272,7 @@ async function seedRSSFeeds(feedsToSeed: RSSFeedInput[]): Promise<void> {
   }
 
   const overallElapsed = Math.round((Date.now() - overallStartTime) / 1000)
-  console.log(`\n🎉 RSS feed seeding completed! Total time: ${overallElapsed}s`)
+  console.log(`\n🎉 RSS feed seeding completed! Total time: ${formatDuration(overallElapsed)}`)
 }
 
 // Example usage function
@@ -266,6 +293,14 @@ async function main() {
     {
       url: "https://linear.app/rss/changelog.xml",
       title: "Linear Changelog",
+    },
+    {
+      url: "https://cprss.s3.amazonaws.com/react.statuscode.com.xml",
+      title: "React Status",
+    },
+    {
+      url: "https://cprss.s3.amazonaws.com/rubyweekly.com.xml",
+      title: "Ruby Weekly",
     },
   ]
 
@@ -288,5 +323,10 @@ export { seedRSSFeeds }
 
 // Run if called directly (ES module compatible)
 if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(console.error)
+  main()
+    .catch(console.error)
+    .finally(() => {
+      // Close database connection to allow process to exit
+      client.end()
+    })
 }
