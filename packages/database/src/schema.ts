@@ -30,7 +30,7 @@ const rssFeeds = pgTable(
       .defaultNow()
       .$onUpdate(() => new Date()),
     feedId: uuid("feed_id")
-      .references(() => feeds.id)
+      .references(() => feeds.id, { onDelete: "cascade" })
       .unique(),
     siteUrl: text("site_url"),
     description: text("description"),
@@ -59,7 +59,7 @@ const feedItems = pgTable(
       .defaultNow()
       .$onUpdate(() => new Date()),
     kind: feedItemKindEnum("kind").notNull(),
-    feedSourceId: uuid("feed_source_id").references(() => feeds.id),
+    feedSourceId: uuid("feed_source_id").references(() => feeds.id, { onDelete: "cascade" }),
   },
   (table) => [
     index("feed_items_feed_source_id_idx").on(table.feedSourceId),
@@ -78,9 +78,9 @@ const rssArticles = pgTable(
       .notNull()
       .defaultNow()
       .$onUpdate(() => new Date()),
-    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.id),
+    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.id, { onDelete: "cascade" }),
     feedItemId: uuid("feed_item_id")
-      .references(() => feedItems.id)
+      .references(() => feedItems.id, { onDelete: "cascade" })
       .unique(),
     title: text("title").notNull(),
     link: text("link").notNull(),
@@ -114,9 +114,9 @@ const rssPodcasts = pgTable(
       .notNull()
       .defaultNow()
       .$onUpdate(() => new Date()),
-    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.id),
+    rssFeedId: uuid("rss_feed_id").references(() => rssFeeds.id, { onDelete: "cascade" }),
     feedItemId: uuid("feed_item_id")
-      .references(() => feedItems.id)
+      .references(() => feedItems.id, { onDelete: "cascade" })
       .unique(),
     title: text("title").notNull(),
     link: text("link").notNull(),
