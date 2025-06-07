@@ -7,11 +7,11 @@
   },
   "scripts": {
     "auth:generate": "pnpm dlx @better-auth/cli@latest generate --y --config ../auth/src/index.ts --output src/schema-auth.gen.ts",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:pull": "drizzle-kit pull",
+    "db:generate": "drizzle-kit generate --config drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
+    "db:pull": "drizzle-kit pull --config drizzle.config.ts",
     "db:seed": "tsx scripts/seed.ts",
-    "db:studio": "drizzle-kit studio",
+    "db:studio": "drizzle-kit studio --config drizzle.config.ts",
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
