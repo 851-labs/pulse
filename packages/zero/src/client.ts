@@ -1,10 +1,10 @@
 import { Zero } from "@rocicorp/zero"
 import { schema } from "./schema"
 
-const z = new Zero({
+const zero = new Zero({
   userID: "anon",
   server: "http://localhost:4848",
   schema,
 })
 
-export { z }
+export { zero }

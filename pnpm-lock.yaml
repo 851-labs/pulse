@@ -26,6 +26,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@851-labs/zero':
+        specifier: workspace:*
+        version: link:../../packages/zero
       '@base-ui-components/react':
         specifier: 1.0.0-beta.0
         version: 1.0.0-beta.0(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

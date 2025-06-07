@@ -1,12 +1,12 @@
-import { HeadContent, Link, Outlet, Scripts, createRootRoute } from "@tanstack/react-router"
+import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import * as React from "react"
+import { TooltipProvider } from "~/components/ui/tooltip"
+import { cn } from "~/utils/cn"
 import { DefaultCatchBoundary } from "../components/DefaultCatchBoundary"
 import { NotFound } from "../components/NotFound"
 import appCss from "../styles/app.css?url"
-import { seo } from "../utils/seo"
-import { TooltipProvider } from "~/components/ui/tooltip"
-import { cn } from "~/utils/cn"
+import { ZeroProvider } from "@851-labs/zero/zero-provider"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -18,10 +18,6 @@ export const Route = createRootRoute({
         name: "viewport",
         content: "width=device-width, initial-scale=1",
       },
-      ...seo({
-        title: "TanStack Start | Type-Safe, Client-First, Full-Stack React Framework",
-        description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
-      }),
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -80,12 +76,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           "flex flex-col",
         )}
       >
-        <TooltipProvider>
-          {children}
+        <ZeroProvider>
+          <TooltipProvider>
+            {children}
 
-          <TanStackRouterDevtools position="bottom-right" />
-          <Scripts />
-        </TooltipProvider>
+            <TanStackRouterDevtools position="bottom-right" />
+            <Scripts />
+          </TooltipProvider>
+        </ZeroProvider>
       </body>
     </html>
   )
