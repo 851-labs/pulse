@@ -12,11 +12,14 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as PostsImport } from './routes/posts'
+import { Route as FeedsImport } from './routes/feeds'
 import { Route as DesignImport } from './routes/design'
 import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
+import { Route as FeedsIndexImport } from './routes/feeds/index'
 import { Route as DesignIndexImport } from './routes/design/index'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as FeedsFeedIdImport } from './routes/feeds/$feedId'
 import { Route as DesignTooltipImport } from './routes/design/tooltip'
 import { Route as DesignScrollAreaImport } from './routes/design/scroll-area'
 import { Route as DesignButtonImport } from './routes/design/button'
@@ -26,6 +29,12 @@ import { Route as DesignButtonImport } from './routes/design/button'
 const PostsRoute = PostsImport.update({
   id: '/posts',
   path: '/posts',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FeedsRoute = FeedsImport.update({
+  id: '/feeds',
+  path: '/feeds',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -47,6 +56,12 @@ const PostsIndexRoute = PostsIndexImport.update({
   getParentRoute: () => PostsRoute,
 } as any)
 
+const FeedsIndexRoute = FeedsIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => FeedsRoute,
+} as any)
+
 const DesignIndexRoute = DesignIndexImport.update({
   id: '/',
   path: '/',
@@ -57,6 +72,12 @@ const PostsPostIdRoute = PostsPostIdImport.update({
   id: '/$postId',
   path: '/$postId',
   getParentRoute: () => PostsRoute,
+} as any)
+
+const FeedsFeedIdRoute = FeedsFeedIdImport.update({
+  id: '/$feedId',
+  path: '/$feedId',
+  getParentRoute: () => FeedsRoute,
 } as any)
 
 const DesignTooltipRoute = DesignTooltipImport.update({
@@ -95,6 +116,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DesignImport
       parentRoute: typeof rootRoute
     }
+    '/feeds': {
+      id: '/feeds'
+      path: '/feeds'
+      fullPath: '/feeds'
+      preLoaderRoute: typeof FeedsImport
+      parentRoute: typeof rootRoute
+    }
     '/posts': {
       id: '/posts'
       path: '/posts'
@@ -123,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DesignTooltipImport
       parentRoute: typeof DesignImport
     }
+    '/feeds/$feedId': {
+      id: '/feeds/$feedId'
+      path: '/$feedId'
+      fullPath: '/feeds/$feedId'
+      preLoaderRoute: typeof FeedsFeedIdImport
+      parentRoute: typeof FeedsImport
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
@@ -136,6 +171,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/design/'
       preLoaderRoute: typeof DesignIndexImport
       parentRoute: typeof DesignImport
+    }
+    '/feeds/': {
+      id: '/feeds/'
+      path: '/'
+      fullPath: '/feeds/'
+      preLoaderRoute: typeof FeedsIndexImport
+      parentRoute: typeof FeedsImport
     }
     '/posts/': {
       id: '/posts/'
@@ -166,6 +208,18 @@ const DesignRouteChildren: DesignRouteChildren = {
 const DesignRouteWithChildren =
   DesignRoute._addFileChildren(DesignRouteChildren)
 
+interface FeedsRouteChildren {
+  FeedsFeedIdRoute: typeof FeedsFeedIdRoute
+  FeedsIndexRoute: typeof FeedsIndexRoute
+}
+
+const FeedsRouteChildren: FeedsRouteChildren = {
+  FeedsFeedIdRoute: FeedsFeedIdRoute,
+  FeedsIndexRoute: FeedsIndexRoute,
+}
+
+const FeedsRouteWithChildren = FeedsRoute._addFileChildren(FeedsRouteChildren)
+
 interface PostsRouteChildren {
   PostsPostIdRoute: typeof PostsPostIdRoute
   PostsIndexRoute: typeof PostsIndexRoute
@@ -181,12 +235,15 @@ const PostsRouteWithChildren = PostsRoute._addFileChildren(PostsRouteChildren)
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/design': typeof DesignRouteWithChildren
+  '/feeds': typeof FeedsRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
   '/design/button': typeof DesignButtonRoute
   '/design/scroll-area': typeof DesignScrollAreaRoute
   '/design/tooltip': typeof DesignTooltipRoute
+  '/feeds/$feedId': typeof FeedsFeedIdRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/design/': typeof DesignIndexRoute
+  '/feeds/': typeof FeedsIndexRoute
   '/posts/': typeof PostsIndexRoute
 }
 
@@ -195,8 +252,10 @@ export interface FileRoutesByTo {
   '/design/button': typeof DesignButtonRoute
   '/design/scroll-area': typeof DesignScrollAreaRoute
   '/design/tooltip': typeof DesignTooltipRoute
+  '/feeds/$feedId': typeof FeedsFeedIdRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/design': typeof DesignIndexRoute
+  '/feeds': typeof FeedsIndexRoute
   '/posts': typeof PostsIndexRoute
 }
 
@@ -204,12 +263,15 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/design': typeof DesignRouteWithChildren
+  '/feeds': typeof FeedsRouteWithChildren
   '/posts': typeof PostsRouteWithChildren
   '/design/button': typeof DesignButtonRoute
   '/design/scroll-area': typeof DesignScrollAreaRoute
   '/design/tooltip': typeof DesignTooltipRoute
+  '/feeds/$feedId': typeof FeedsFeedIdRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/design/': typeof DesignIndexRoute
+  '/feeds/': typeof FeedsIndexRoute
   '/posts/': typeof PostsIndexRoute
 }
 
@@ -218,12 +280,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/design'
+    | '/feeds'
     | '/posts'
     | '/design/button'
     | '/design/scroll-area'
     | '/design/tooltip'
+    | '/feeds/$feedId'
     | '/posts/$postId'
     | '/design/'
+    | '/feeds/'
     | '/posts/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -231,19 +296,24 @@ export interface FileRouteTypes {
     | '/design/button'
     | '/design/scroll-area'
     | '/design/tooltip'
+    | '/feeds/$feedId'
     | '/posts/$postId'
     | '/design'
+    | '/feeds'
     | '/posts'
   id:
     | '__root__'
     | '/'
     | '/design'
+    | '/feeds'
     | '/posts'
     | '/design/button'
     | '/design/scroll-area'
     | '/design/tooltip'
+    | '/feeds/$feedId'
     | '/posts/$postId'
     | '/design/'
+    | '/feeds/'
     | '/posts/'
   fileRoutesById: FileRoutesById
 }
@@ -251,12 +321,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DesignRoute: typeof DesignRouteWithChildren
+  FeedsRoute: typeof FeedsRouteWithChildren
   PostsRoute: typeof PostsRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DesignRoute: DesignRouteWithChildren,
+  FeedsRoute: FeedsRouteWithChildren,
   PostsRoute: PostsRouteWithChildren,
 }
 
@@ -272,6 +344,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/design",
+        "/feeds",
         "/posts"
       ]
     },
@@ -285,6 +358,13 @@ export const routeTree = rootRoute
         "/design/scroll-area",
         "/design/tooltip",
         "/design/"
+      ]
+    },
+    "/feeds": {
+      "filePath": "feeds.tsx",
+      "children": [
+        "/feeds/$feedId",
+        "/feeds/"
       ]
     },
     "/posts": {
@@ -306,6 +386,10 @@ export const routeTree = rootRoute
       "filePath": "design/tooltip.tsx",
       "parent": "/design"
     },
+    "/feeds/$feedId": {
+      "filePath": "feeds/$feedId.tsx",
+      "parent": "/feeds"
+    },
     "/posts/$postId": {
       "filePath": "posts.$postId.tsx",
       "parent": "/posts"
@@ -313,6 +397,10 @@ export const routeTree = rootRoute
     "/design/": {
       "filePath": "design/index.tsx",
       "parent": "/design"
+    },
+    "/feeds/": {
+      "filePath": "feeds/index.tsx",
+      "parent": "/feeds"
     },
     "/posts/": {
       "filePath": "posts.index.tsx",

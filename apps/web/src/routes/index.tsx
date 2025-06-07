@@ -1,6 +1,6 @@
 import { useZero } from "@851-labs/zero/use-zero"
 import { useQuery } from "@rocicorp/zero/react"
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Link } from "@tanstack/react-router"
 import { ExternalLinkIcon, RssIcon } from "lucide-react"
 import { AppShell } from "~/components/app-shell"
 import { ScrollArea } from "~/components/ui/scroll-area"
@@ -25,21 +25,31 @@ function Home() {
               <ScrollArea.Content className="space-y-1">
                 {/* Feeds Section */}
                 <div className="mb-6">
-                  <h3 className="mb-2 px-2 text-xs font-medium uppercase tracking-wide text-gray-600">RSS Feeds</h3>
+                  <div className="mb-2 flex items-center justify-between px-2">
+                    <h3 className="text-xs font-medium uppercase tracking-wide text-gray-600">RSS Feeds</h3>
+                    <Link to="/feeds" className="text-xs font-medium text-blue-600 hover:text-blue-800">
+                      View All
+                    </Link>
+                  </div>
                   <div className="space-y-0.5">
-                    {feeds.map((feed) => (
-                      <div
-                        key={feed.id}
-                        className="group flex cursor-pointer items-center rounded-md px-2 py-1.5 text-sm hover:bg-gray-200/60"
-                      >
-                        <RssIcon className="mr-2 h-4 w-4 text-orange-500" />
-                        <div className="min-w-0 flex-1">
-                          <div className="truncate font-medium text-gray-900">{feed.title || "Untitled Feed"}</div>
-                          <div className="truncate text-xs text-gray-500">{feed.url}</div>
-                        </div>
-                        <ExternalLinkIcon className="h-3 w-3 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100" />
-                      </div>
-                    ))}
+                    {feeds
+                      .filter((feed) => feed.id)
+                      .map((feed) => (
+                        <Link
+                          key={feed.id}
+                          to="/feeds/$feedId"
+                          params={{ feedId: feed.id! }}
+                          className="group flex cursor-pointer items-center rounded-md px-2 py-1.5 text-sm hover:bg-gray-200/60"
+                          activeProps={{ className: "bg-blue-50 border-l-2 border-blue-500" }}
+                        >
+                          <RssIcon className="mr-2 h-4 w-4 text-orange-500" />
+                          <div className="min-w-0 flex-1">
+                            <div className="truncate font-medium text-gray-900">{feed.title || "Untitled Feed"}</div>
+                            <div className="truncate text-xs text-gray-500">{feed.url}</div>
+                          </div>
+                          <ExternalLinkIcon className="h-3 w-3 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100" />
+                        </Link>
+                      ))}
                   </div>
                 </div>
               </ScrollArea.Content>
