@@ -11,12 +11,14 @@
     "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
     "db:pull": "drizzle-kit pull --config drizzle.config.ts",
     "db:seed": "tsx scripts/seed.ts",
+    "db:seed-rss": "tsx scripts/seed-rss-feeds.ts",
     "db:studio": "drizzle-kit studio --config drizzle.config.ts",
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
     "drizzle-orm": "0.44.1",
-    "postgres": "3.4.7"
+    "postgres": "3.4.7",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "dotenv": "^16.5.0",
