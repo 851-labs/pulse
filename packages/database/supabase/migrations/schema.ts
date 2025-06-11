@@ -1,5 +1,4 @@
 import { pgTable, text, timestamp, unique, boolean, foreignKey, uuid, jsonb, pgEnum } from "drizzle-orm/pg-core"
-import { sql } from "drizzle-orm"
 
 export const feedItemKind = pgEnum("feed_item_kind", ["rss_article", "rss_podcast"])
 export const feedKind = pgEnum("feed_kind", ["rss", "youtube", "x_timeline", "github_repo"])

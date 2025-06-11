@@ -13,12 +13,14 @@
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "postinstall": "pnpm lint:ws && pnpm types:generate && pnpm auth:generate && pnpm db:generate && pnpm zero:generate && pnpm format",
+    "lint": "oxlint --deny-warnings --fix --fix-suggestions",
     "lint:ws": "sherif",
     "types:check": "turbo types:check",
     "types:generate": "turbo types:generate",
     "zero:generate": "turbo zero:generate"
   },
   "devDependencies": {
+    "oxlint": "^1.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.15",
     "prettier-plugin-tailwindcss": "^0.6.12",
