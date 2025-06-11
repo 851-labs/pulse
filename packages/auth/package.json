@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@851-labs/database": "workspace:*",
-    "better-auth": "^1.2.8"
+    "better-auth": "^1.2.9"
   },
   "devDependencies": {
     "dotenv": "^16.5.0",
