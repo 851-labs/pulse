@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    // Code formatting and linting
+    "oxc.oxc-vscode",
+    // Auto rename paired HTML/XML tag
+    "formulahendry.auto-rename-tag",
+    // Intelligent Tailwind CSS tooling for VS Code
+    "bradlc.vscode-tailwindcss",
+    // Make TypeScript errors prettier and more human-readable in VSCode
+    "yoavbls.pretty-ts-errors",
+    // Icons for Visual Studio Code
+    "vscode-icons-team.vscode-icons",
+    // Support for dotenv file syntax
+    "mikestead.dotenv",
+    // GitHub Actions workflows and runs
+    "github.vscode-github-actions",
+    // Docker
+    "ms-azuretools.vscode-containers"
+  ]
+}
